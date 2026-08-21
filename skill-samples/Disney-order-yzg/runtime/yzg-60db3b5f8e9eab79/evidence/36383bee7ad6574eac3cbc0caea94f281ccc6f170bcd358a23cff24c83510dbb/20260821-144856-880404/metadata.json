@@ -1,0 +1,33 @@
+{
+  "condition_id": "36383bee7ad6574eac3cbc0caea94f281ccc6f170bcd358a23cff24c83510dbb",
+  "captured_at": "2026-08-21T14:48:56",
+  "html_sha256": "7e7c7033122b73637e8126acd29f1aa9a0943e4644ca5d64287298f7c8018ecd",
+  "url": "https://yzg.tms8.com/#/inquiry-workbench/route-add",
+  "detail_count": 0,
+  "transaction_details": [],
+  "requested_form": {
+    "origin_province": "广西壮族自治区",
+    "origin_city": "钦州市",
+    "origin_district": "钦南区",
+    "destination_province": "上海市",
+    "destination_city": "上海市",
+    "destination_district": "奉贤区",
+    "cargo_name": "普通货物",
+    "car_length": "6.2",
+    "platform_vehicle_type": "集装箱",
+    "query_weight": ""
+  },
+  "observed_form": {
+    "car_length": "6.2",
+    "platform_vehicle_type": "集装箱",
+    "origin": "广西壮族自治区钦州市钦南区",
+    "destination": "上海市上海市奉贤区",
+    "cargo_name": "普通货物",
+    "query_weight": ""
+  },
+  "form_verification": {
+    "passed": true,
+    "mismatches": []
+  },
+  "screenshot": "D:\\DongBase\\datahub\\skill-samples\\Disney-order-yzg\\runtime\\yzg-60db3b5f8e9eab79\\evidence\\36383bee7ad6574eac3cbc0caea94f281ccc6f170bcd358a23cff24c83510dbb\\20260821-144856-880404\\page.png"
+}

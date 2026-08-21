@@ -1,0 +1,78 @@
+{
+  "condition_id": "d18d8d341fd5f595bd0472afb3f488eaae1fe76af81837ce42573098b9bcc269",
+  "source_ids": "8",
+  "origin_district_source": "客户原始区县",
+  "destination_district_source": "客户原始区县",
+  "status": "no_data",
+  "terminal": true,
+  "attempt_count": 1,
+  "attempts": [
+    {
+      "attempt_no": 1,
+      "started_at": "2026-08-21T14:48:31",
+      "finished_at": "2026-08-21T14:48:39",
+      "status": "no_data",
+      "route": {
+        "base": "",
+        "origin_province": "安徽省",
+        "origin_city": "宣城市",
+        "origin_district": "宣州区",
+        "destination_province": "上海市",
+        "destination_city": "上海市",
+        "destination_district": "浦东新区",
+        "local_vehicle": "",
+        "cargo_name": "普通货物",
+        "car_length": "6.2",
+        "platform_vehicle_type": "厢式",
+        "query_weight": ""
+      },
+      "quotes": [
+        {
+          "route": {
+            "base": "",
+            "origin_province": "安徽省",
+            "origin_city": "宣城市",
+            "origin_district": "宣州区",
+            "destination_province": "上海市",
+            "destination_city": "上海市",
+            "destination_district": "浦东新区",
+            "local_vehicle": "",
+            "cargo_name": "普通货物",
+            "car_length": "6.2",
+            "platform_vehicle_type": "厢式",
+            "query_weight": ""
+          },
+          "market_low": null,
+          "market_high": null,
+          "market_reference": null,
+          "distance_km": 286,
+          "sample_count": 0,
+          "error": "",
+          "query_origin_district": "宣州区",
+          "query_destination_district": "浦东新区",
+          "query_level": "区县级",
+          "district_resolution_source": "输入区县",
+          "evidence_path": "D:\\DongBase\\datahub\\skill-samples\\Disney-order-yzg\\runtime\\yzg-60db3b5f8e9eab79\\evidence\\d18d8d341fd5f595bd0472afb3f488eaae1fe76af81837ce42573098b9bcc269\\20260821-144839-093839",
+          "transaction_details": [],
+          "quota_limited": false
+        }
+      ],
+      "evidence_paths": [
+        "D:\\DongBase\\datahub\\skill-samples\\Disney-order-yzg\\runtime\\yzg-60db3b5f8e9eab79\\evidence\\d18d8d341fd5f595bd0472afb3f488eaae1fe76af81837ce42573098b9bcc269\\20260821-144839-093839"
+      ],
+      "form_verification": [
+        {
+          "passed": true,
+          "mismatches": []
+        }
+      ],
+      "detail_verification": {
+        "completed": 0,
+        "strict": 0,
+        "mismatch": 0,
+        "unknown": 0,
+        "all_explicitly_mismatched": false
+      }
+    }
+  ]
+}
