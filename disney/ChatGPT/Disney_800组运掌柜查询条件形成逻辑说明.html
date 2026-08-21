@@ -1,0 +1,103 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Disney 800组运掌柜查询条件形成逻辑说明</title>
+<style>
+:root{--bg:#f5f7fa;--card:#fff;--ink:#18202a;--muted:#667085;--line:#dfe5ec;--blue:#215b8f;--blue2:#eaf2f9;--amber:#9a6700;--amberbg:#fff8e6;--green:#16794a;--greenbg:#eaf7f0;--red:#a33a2b;--redbg:#fff0ed}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--ink);font-family:"Segoe UI","Microsoft YaHei",Arial,sans-serif;line-height:1.62}main{max-width:1080px;margin:0 auto;padding:36px 22px 64px}.hero{background:linear-gradient(135deg,#173f61,#276f9e);color:#fff;border-radius:18px;padding:32px 34px;box-shadow:0 12px 30px rgba(30,66,95,.16)}.hero h1{margin:0 0 10px;font-size:30px;line-height:1.25}.hero p{margin:0;opacity:.9;font-size:15px}.summary{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin:20px 0}.kpi{background:#fff;border:1px solid var(--line);border-radius:14px;padding:18px}.kpi strong{display:block;font-size:30px;color:var(--blue);line-height:1.1}.kpi span{display:block;margin-top:7px;color:var(--muted);font-size:13px}.card{background:#fff;border:1px solid var(--line);border-radius:16px;padding:24px 26px;margin-top:18px}.card h2{margin:0 0 14px;font-size:21px}.lead{font-size:17px;margin:0}.flow{display:flex;align-items:stretch;gap:10px;margin:22px 0 8px}.step{flex:1;background:var(--blue2);border:1px solid #c9dceb;border-radius:14px;padding:18px 14px;text-align:center}.step .num{font-size:31px;font-weight:750;color:var(--blue)}.step .label{font-size:13px;color:#506276;margin-top:6px}.arrow{display:flex;align-items:center;color:#7e8b98;font-size:24px;font-weight:700}.eq{font-size:22px;font-weight:750;text-align:center;padding:18px;background:#eef5fb;border-radius:12px;color:#173f61}.grid{display:grid;grid-template-columns:1fr 1fr;gap:14px}.note{padding:15px 16px;border-radius:12px;font-size:14px}.note.amber{background:var(--amberbg);border:1px solid #efd79f;color:#684900}.note.green{background:var(--greenbg);border:1px solid #bfe1cf;color:#145b3a}.note.red{background:var(--redbg);border:1px solid #efc8c1;color:#763126}table{width:100%;border-collapse:collapse;margin-top:10px;font-size:14px}th,td{padding:11px 12px;border-bottom:1px solid var(--line);text-align:left;vertical-align:top}th{background:#f7f9fb;color:#4b5563;font-weight:650}td.num{text-align:right;font-variant-numeric:tabular-nums;font-weight:650}.small{font-size:13px;color:var(--muted)}.example{background:#f8fafc;border:1px dashed #b9c6d3;border-radius:12px;padding:16px 18px;margin-top:12px}.example code{font-family:Consolas,monospace;color:#21445e}.footer{margin-top:26px;color:var(--muted);font-size:12px;text-align:center}@media(max-width:760px){.summary{grid-template-columns:1fr 1fr}.flow{flex-direction:column}.arrow{justify-content:center;transform:rotate(90deg)}.grid{grid-template-columns:1fr}.hero h1{font-size:24px}}
+</style>
+</head>
+<body>
+<main>
+  <section class="hero">
+    <h1>800组运掌柜查询条件是怎么形成的</h1>
+    <p>说明对象：Disney FTL 市场价查询。800不是客户原始报价行数，而是将客户FTL需求转换成运掌柜可执行查询条件后的内部任务数。</p>
+  </section>
+
+  <section class="summary">
+    <div class="kpi"><strong>405</strong><span>Disney FTL原始报价组合</span></div>
+    <div class="kpi"><strong>401</strong><span>剔除4条危化运输后的可查询组合</span></div>
+    <div class="kpi"><strong>400</strong><span>映射到运掌柜参数后的唯一组合</span></div>
+    <div class="kpi"><strong>800</strong><span>分别查询两个上海DC后的任务数</span></div>
+  </section>
+
+  <section class="card">
+    <h2>一、先从客户原始FTL报价表开始</h2>
+    <p class="lead">Disney FTL报价模板中共有 <strong>405个报价组合</strong>。这些组合由普通干线、SOC集装箱、冷藏及危化运输构成。</p>
+    <table>
+      <thead><tr><th>业务类型</th><th>组合数</th><th>说明</th></tr></thead>
+      <tbody>
+        <tr><td>普通 DRY</td><td class="num">312</td><td>39个始发城市 × 8种标准吨位车型</td></tr>
+        <tr><td>DRY-SOC 集装箱</td><td class="num">81</td><td>20GP、40GP、40HQ、45HQ等SOC运输组合</td></tr>
+        <tr><td>REEFER 冷藏</td><td class="num">8</td><td>客户指定城市及冷藏车型组合</td></tr>
+        <tr><td>HAZMAT 危化</td><td class="num">4</td><td>客户单独列出的危化运输组合</td></tr>
+        <tr><td><strong>合计</strong></td><td class="num"><strong>405</strong></td><td></td></tr>
+      </tbody>
+    </table>
+    <p class="small">数据来源：Appendix_A_-_Pricing_Template-2026_Final.xlsx 的 FTL Sheet。</p>
+  </section>
+
+  <section class="card">
+    <h2>二、为什么405先变成401</h2>
+    <div class="grid">
+      <div>
+        <p>其中有 <strong>4条 HAZMAT 危化运输</strong>。运掌柜当前用于本次查询的车型参数中没有独立的危化专用车型口径，而危化运输又涉及车辆、司机资质及专业承运要求。</p>
+        <p>因此这4条没有用普通货车市场价进行替代，而是从本次运掌柜普通市场价查询中单独排除。</p>
+      </div>
+      <div class="note amber"><strong>处理结果</strong><br>405 − 4 = <strong>401</strong><br><br>这4条业务需求并没有被删除，只是不进入本次普通运掌柜市场价查询，后续应通过具备危化资质的承运资源单独询价。</div>
+    </div>
+  </section>
+
+  <section class="card">
+    <h2>三、为什么401又变成400</h2>
+    <p>Disney的车型名称需要先转换成运掌柜能够识别的“车长 + 平台车型”查询参数。在这一转换过程中，有一组客户车型最终落到了同一套运掌柜查询条件：</p>
+    <div class="example">
+      Disney：<code>40'GP</code> 与 <code>40'HQ</code><br>
+      运掌柜查询映射：均采用 <code>12.5米 + 集装箱</code> 的查询口径
+    </div>
+    <p>因此，对运掌柜而言这两条查询条件完全相同。为了避免重复抓取同一个市场价格，内部查询任务进行了去重。</p>
+    <div class="eq">401 个可查询业务组合 → 去重后 400 个唯一运掌柜查询组合</div>
+    <div class="note green" style="margin-top:14px"><strong>注意：</strong>这里去重的是“市场价查询任务”，不是合并客户报价需求。正式报价时仍应按照Disney原始车型和报价表结构分别处理。</div>
+  </section>
+
+  <section class="card">
+    <h2>四、为什么最后是800</h2>
+    <p>Disney FTL报价表对应两个上海配送中心：</p>
+    <table>
+      <thead><tr><th>目的地</th><th>所在区域</th></tr></thead>
+      <tbody>
+        <tr><td>SHDR DC1</td><td>上海浦东新区（临港区域）</td></tr>
+        <tr><td>TDSC DC</td><td>上海奉贤区</td></tr>
+      </tbody>
+    </table>
+    <p>运掌柜一次查询需要明确一个具体目的地。浦东临港与奉贤的实际运输距离和线路成本并不完全相同，因此每一个唯一始发/车型组合都分别查询两个DC，而不是统一使用一个“上海代表点”。</p>
+    <div class="eq">400 个唯一查询组合 × 2 个上海DC = <strong>800组查询条件</strong></div>
+  </section>
+
+  <section class="card">
+    <h2>五、完整形成过程</h2>
+    <div class="flow">
+      <div class="step"><div class="num">405</div><div class="label">客户FTL原始报价组合</div></div>
+      <div class="arrow">→</div>
+      <div class="step"><div class="num">401</div><div class="label">排除4条危化市场价查询</div></div>
+      <div class="arrow">→</div>
+      <div class="step"><div class="num">400</div><div class="label">运掌柜参数映射后去重</div></div>
+      <div class="arrow">→</div>
+      <div class="step"><div class="num">800</div><div class="label">浦东、奉贤两个DC分别查询</div></div>
+    </div>
+  </section>
+
+  <section class="card">
+    <h2>六、最终需要区分的两个口径</h2>
+    <div class="grid">
+      <div class="note red"><strong>客户需求口径：405</strong><br>这是Disney原始FTL报价组合数量，正式报价、投标文件及客户需求追踪仍应以原始405条为基础。</div>
+      <div class="note green"><strong>内部市场查询口径：800</strong><br>这是为了获取两个上海DC更准确的市场运输价格而展开的运掌柜查询任务数，仅用于内部市场价采集和成本分析。</div>
+    </div>
+  </section>
+
+  <div class="footer">Disney FTL 市场价查询口径说明 · 2026-08-21</div>
+</main>
+</body>
+</html>
