@@ -1,0 +1,60 @@
+﻿,,,,,,,,,,,,,
+,"对象/环节
+Object/Sector
+","序号
+S/N","安全要求
+Security Requirement","安全要求(English)
+Security  requirements","适用场景：
+(国际运输、清关、海外陆运)
+Scenario:(Int'l transport /Customs Clearance /Destion transport ","运输方式
+Mode of transport
+",Level - 2,Carrier Audit Reuslt,Audit Items,,,,
+,车辆-Vehicle,1.1,运输车辆必须为箱式车辆(实顶、硬边或加固的软边、并带有车厢锁)，且车厢厢门可以正常关，利用集装箱运输时可用集装箱专用拖车。,"Vehicles should be Solid-top, hard-sided or reinforced soft-sided trailers with lockable cargo doors and doors can be closed normally. Off-Size products which require special vehicles for transportation i.e. Flat-Bed Truck can be used upon advance approval by Disney Logistics Team .",Domestic,All,√,,,,,,
+,,1.2,"运输车辆必须配备4G/5G GPS或类似的可实现在途跟踪的装置；非授权的人员不允许查看车辆的运行信息 ,运输车辆的行驶记录最低保存90天。","4G/ 5G GPS or similar technology installed in vehicles to provide real-time movement tracking, unauthorized personnel are not allowed to see the vehicle travel records. Travel records to be keept for at least 90 days.",Domestic,All,√,,,,,,
+,,1.3,原则上优先使用单门厢式车；对于确需使用侧门 / 双门车的场景（如多点配送、城市零担），承运商须制定额外的封条管控和中途检查程序，并提前取得迪士尼物流团队书面批准。,"Please always avoid assigning side-door truck in order to get rid of potential errors in physical seal or record in documents. This is very crucial for Disney’s security. Before truck with side-door is used, please justify reason and get approval from Disney Logistics Team first.",Domestic,All,√,,,,,,
+,,1.4,整柜 / 整车运输必须使用至少一枚 ISO 17712:2013 级高安全性封条,Trucks and Sea-Containers must be secured with appropriate single security seals ,Domestic,All,√,,,,,,
+,,1.5,国内陆路分包商、需获得 TAPA‑TSR 运输安全审核报告 / 证书或相关ISO28000 供应链安全体系认证,The logistics service provider or its sun-contractor participate in or has obtained a certification in a supply chain security program ,Domestic,All,√,,,,,,
+,,1.6,使用的货柜车必须符合国家交管局或者环保局使用年限和里程相关规定，并优先使用车龄在5年以内的汽车,The truck in use must in compliance with the policy that published by local law and transportation /environmental bureau  ,Domestic,All,√,,,,,,
+,,1.7,承运商以及其委派拖车行必须对封条采购以及分发有严格的管控流程以及完整记录并且保留存档以便迪士尼团核查. 所有整车必须使用规定的封条型号ISO 17712:2013。如非必要用其他材质封条，需提前报备给迪士尼物流团队并且取得同意才能使用。,Written procedures must stipulate how seals are to be controlled and affixed to loaded containers. Procedures must be in place for recognizing and reporting compromised seals and/or containers to Disney and the appropriate foreign authority. LSP or its sub-con Must keep a container seal log or keep record of seals used for random check or audit by Disney . A high security seal must be affixed to all loaded containers. All seals must meet or exceed the current PAS ISO 17712:2013 standards for high security seals. must get advanced approval from Disney logistics Team if have to use other kind of SEAL other than 17712:2013. ,Domestic,All,√,,,,,,
+,,1.8,承运商以及其委派拖车行必须有相应识别和报告封条损坏给Disney的程序。,Does the LSP and its sub-con have procedures in place for recognizing and reporting compromised seals to Disney?,Domestic,All,√,,,,,,
+,司机 -Driver,2.1,所有装运迪士尼货物的司机必须携带政府颁发的带相片的身份证明（例如：司机驾驶证，护照或身份证等）；装运危险品的司机和卡车要有符合当地国家法律/法规要求的危险品运输的资质。,"All drivers must carry a valid government issued identification document which must contain a photograph of the bearer.e.g.; drivers' license; passport or national ID card, etc.).
+For dangerous goods Transportation, the driver's license must either carry the information that the bearer is licensed to transport dangerous goods or a similar license/proof of training (depending on country laws, rules and regulations i.e. DG License)",Domestic,All,√,,,,,,
+,,2.2,所有装运迪士尼货物的司机必须经物流服务商培训及考核后方可上岗，考核的过程记录可追溯。,"All drivers need to be properly trained (vehicle handling/operation within customer's premises, security awareness) assessment records can be checked",Domestic,All,√,,,,,,
+,,2.3,物流服务商对所有司机都需建立管理档案，保存司机的身份证明及车辆登记信息（如:身份证、驾驶证、车辆行驶证等文档的复印件）。,"LSP has to set-up a register to contain the driver and vehicle records (identity card, driving license, driving license copy, license/vehicle identification plate).",Domestic,All,√,,,,,,
+,,2.4,"运输车辆的驾驶室和发动机的钥匙必须由司机安全保管,禁止未授权的其他人使用。",Keys to the truck cab and the ignition keys must be secured from unauthorized use at all times,Domestic,All,√,,,,,,
+,装货-Loading,3.1,在装货过程，物流服务商的装货人员需确保符合作业规范，包括但不限于以下内容：,"For the Loading Process, the Pesonnel is required to be in compliance with their job specifications, including but not limited to the following:",Domestic,All,√,,,,,,
+,,3.1.1,货物在车内堆码符合要求: 原则上需遵循上小下大、上轻下重的原则。有防冲击以及易碎标签的货物需特别检查，发现异常要第一时间通知迪士尼物流团队。,"Stacking of cargo in the vehicle or warehouse must meet the appropriate methodology i.e. smaller pieces on top of bigger pieces, lighter pieces on top of heavy pieces etc. take special care and double check on carton  with"" Fragile ""tag and alert Disney logistics Team in case of any abnormality .",Domestic,All,√,,,,,,
+,,3.1.2,轻拿轻放，避免挤压。,"Proper physical handling to avoid, damages to the outer packaging.",Domestic,All,√,,,,,,
+,,3.1.3,工厂装货前需物流承运商委派的司机检查货物外包装是否完好，如发现变形、破损等异常需记录并通告给迪士尼物流团队接口人并且拍照/备注货物状态在交接单上面。,Inspect packaging for external damages at receipt and loading. Damages to be reported to Disney APAC Logistics Team as per SOP.,Domestic,All,√,,,,,,
+,,3.1.4,"装货完毕后，必要情况下实施加固、配备防倒绳以及防水彩条等保护性措施；装货完毕后,若车辆仍留有空隙则需加入填充物或其它固定措施，防止货物倒塌。","After completion of loading the goods must be, if necessary, secured within the vehicle by using anti-slip rope and other protective measures.
+Where appropriate the void/emtpy space between the packaing to be filled or otherwise secured to avoid shifting of the cargo while in transit.",Domestic,All,√,,,,,,
+,,3.15,负责提柜以及安排运输的承运商必须确保货柜7点检查法有实施。 迪士尼拒绝使用不满足7点检查要求的货柜。检查包括：前墙，左侧，右侧，地板，天花板，里/外门，外部/底盘 ,"All trucks & containers must go through 7-point inspection to ensure this is sounded equipment before use.Disney reject to use the container that failed to past 7point checking .   Inspect containers before loading, including:
+     Outside / Undercarriage 
+     Inside / Outside doors  
+     Right Side
+     Left Side
+     Front Wall
+     Ceiling / Roof
+     Floor",Domestic,All,√,,,,,,
+,,3.2,在物流服务商管理的仓库，装货过程必须有CCTV监控，并能记录仓库所有进出车辆及现场作业状态（最好能识别出车辆和人脸）。CCTV 记录需要保存至少90天。,"The loading of the cargo from the LSP's warehouse into the truck/vehicle to be made under CCTV surveillance.
+Surveillance also to record movements of all incoming and outgoing vehicles.
+The CCTV System preferrably should enable identification of vehicles and personnell.have to keep CCTV record at least 90 days as per Disney's request .",Domestic,All,√,,,,,,
+,,3.3,完成装货并验证相关交接单据后，司机必须锁好厢门才可离开。,"Verify that the loading of all cargo is completed. Verify all relevant documents to match the physical cargo load.
+Vehicles/Trucks are only allowed to leave the loading area after the Vehicles/Trucks cargo doors are closed and locked.",Domestic,All,√,,,,,,
+,在途- During Transit,4.1,司机需按照事前制定的运输路线行驶 ；如需变更目的地或者提货地，司机需提前征得迪士尼物流团队同意；,"Any change in origin and destination must be firmly agreed with Disney APAC Logistics Teambefore the actual departure of the Vehicle/Truck.
+Change of routing without approval and agreement by Disney APAC Logistics Teamis forbidden.",Domestic,All,√,,,,,,
+,,4.2,运输途中确保车门关闭并保持上锁状态。,The doors of the Vehicle/Truck must be closed and locked throughout the transportation process,Domestic,All,√,,,,,,
+,,4.3,"整个运输过程中,司机与运输公司需保持双向联络方式,即时的在途信息需在运输公司的监控之下。","During the whole length of the transport, the driver should keep the two way communication with call/control center active and to report regularly the status of the transport in order to ensure proper monitoring.",Domestic,All,√,,,,,,
+,,4.4,如须停车过夜，车辆必须停靠于正规的停车场地或确保在有CCTV安全监控之下，严禁随意在路边停放。,"Except for special circumstances, Vehicles/Trucks are not allowed to remain stationary/parked overnight with cargo on board. In case an overnight stay is necessary, the Vehicles/Trucks must be parked on a properly designated parking area or some area under CCTV security surveillance.
+Random road-side parking is prohibited.",Domestic,Truck,√,,,,,,
+,,4.5,"存放在物流服务商中转仓库的待转运货物，需存放在仓库的安全区域并处于CCTV监控之下 ,在航空公司仓库存放的待转运货物应尽量选择存放在有CCTV 监控的区域。","Cargo transshipped via one of the LSP's warehouses, same must be equipped with CCTV Surveillance System. Cargo to be stored in a safe/secure/closed area.",Domestic,All,√,,,,,,
+,,4.6,运输途中的任何事故以及异常必须第一时间通知迪士尼物流团队，保留好所有单据，如有必要需要司机现场拍照以及调取  GPRS 记录。,"any exception during transit must inform Disney logistics Team at first priority ,it's mandatory to keep  related receipts to prove what happen and Driver need take photo at scene of the accident as well to provide GPRS record to Disney for further investigation .",Domestic,All,√,,,,,,
+,清关-Customs Clearance,5.1,司机或专职押车人员在海关或商检交接货物时，需确认货物外包装件数和外观，如果发现包装损坏或者货物缺失等情况，应第一时间针对异常情况进行拍照(海关不允许拍照的情况下，可先书面记录)及书面记录货物异常情况并立即升级给迪士尼物流团队接口人处理 。,"The driver or escort person should check the conditions of the outer packaging of the cargo and to count the number of pieces upon receipt of cargo from local customs or inspector.
+If any discrepancies or irregularities are found (i.e. cargo / package damage or missing pieces), the Driver / escort person should, if allowed by local rules and regulations, take photographs to support the irregurity case and inform immediately the Disney APAC Logistics TeamPIC. Written report of irregularity as per available format and SOP to be issued.",-,All,,,,,,,
+,,5.2,如遇海关或者商检查验，需要第一时间通知迪士尼物流团队,"In case of physical Customs / Commodity Inspection, LSP has to immediately inform Disney APAC Logistics Team
+",-,All,,,,,,,
+,,5.3,在海关允许拍照的情况下，海关开箱查验前，需要先对待查验货物进行拍照，海关检验完毕封箱后，需要对已查验的货物再次进行拍照；查验照片和海关查验证明需妥善保管以备查阅。,"In case local rules and regulations allow, the LSP should take photos of the cargo before the customs representatives open the boxes for inspection.
+After customs inspection is terminated, the opened boxes must be properly closed with appropriate tape and pictures of the boxes to be taken.
+Any pictures taken during the process shall be kept of file and made available for vetting.",-,All,,,,,,,
+,,5.4,"经海关开箱查验批次的货物，物流服务商在交接时，需先清点货物外包装件数和外观，如发现货损、货差等情况，则应第一时间拍照并书面记录货物的异常情况,并立即升级给迪士尼物流团队供应链接口人处理；物流服务商在运输途中需要重新包装货物时必需使用原包装材料；如原包装材料已损坏或丢失，在得到迪士尼物流团队供应链接口人同意后可使用其它包装材料，重新包装后粘贴LSP受控（有特有标示）的专用封条。","All the boxes which were opened and inspected by customs/during the customs inspection process, the LSP must count the number of packages opened and check the condition of the packaging after the inspection.  In cargo is found damaged or missing, the LSP shall issue an irregularity report and, where allowed by local rules and regulations, take photographs to support the report. The Disney APAC Logistics TeamP.I.C. must be informed immediately. Disney APAC Logistics Teamrequests to re-use the original packaging material. In case the packaging material is damaged beyond being re-usable or lost, the LSP has to advise Disney APAC Logistics Teamaccordingly and use packaing material with special seals/tapes. Disney APAC Logistics Teammust formally acknowledge and approve the material to be used.",-,All,,,,,,,
+,收货- Handover/ Receive,6.1,如LTL 实际重量差异跟迪士尼订单超过5%，则需对异常进行记录备注原因，迪士尼物流团队在账单环节针对金额以及审核要求要求物流承运商提供相关重量差异证明。,"If weigh difference for LTL is greater than 5%, record abnormal and investigate reason timely for Disney futher audit purpose during payment request process . ",Domestic,All,√,,,,,,
