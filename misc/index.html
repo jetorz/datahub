@@ -39,82 +39,54 @@
     button { font: inherit; }
     .wrap { width: min(1160px, calc(100% - 36px)); margin: 0 auto; }
 
-    .brandkit-masthead { padding: 16px 0 0; }
-    .brandkit-surface {
-      position: relative;
+    .topbar {
+      position: sticky;
+      top: 0;
+      z-index: 20;
+      backdrop-filter: blur(18px);
+      background: rgba(255,253,248,.92);
+      border-bottom: 1px solid rgba(19,40,43,.10);
+      box-shadow: 0 8px 28px rgba(22,48,51,.07);
+    }
+    .topbar-inner {
+      min-height: 94px;
       display: grid;
-      grid-template-columns: minmax(0, 1fr) auto;
+      grid-template-columns: auto minmax(0, 1fr) auto;
       align-items: center;
       gap: 28px;
-      overflow: hidden;
-      min-height: 104px;
-      padding: 16px 18px 16px 22px;
-      border: 1px solid rgba(19,40,43,.11);
-      border-radius: 22px;
-      background: rgba(255,253,248,.90);
-      box-shadow: 0 12px 34px rgba(22,48,51,.08);
     }
-    .brandkit-surface::before {
-      content: "";
-      position: absolute;
-      inset: 0 auto 0 0;
-      width: 5px;
-      background: linear-gradient(180deg, var(--teal), var(--coral));
-    }
-    .brandkit-title { display: flex; flex-direction: column; gap: 4px; min-width: 0; }
-    .brandkit-name {
+    .topbar-brand { display: flex; flex-direction: column; gap: 2px; min-width: 0; }
+    .topbar-brand-name {
       color: var(--navy);
-      font-size: clamp(25px, 3vw, 34px);
+      font-size: 27px;
       font-weight: 900;
-      line-height: 1.08;
+      line-height: 1.05;
       letter-spacing: -.045em;
     }
-    .brandkit-topic {
-      color: var(--teal);
-      font-size: 12px;
-      font-weight: 800;
-      letter-spacing: .12em;
-      text-transform: uppercase;
-    }
+    .topbar-report { color: var(--teal); font-size: 12px; font-weight: 800; letter-spacing: .08em; }
+    .topbar-mobile-id { display: none; }
+    .nav { display: flex; justify-content: center; gap: 18px; color: var(--ink-soft); font-size: 13px; }
+    .nav a { text-decoration: none; }
+    .nav a:hover { color: var(--teal); }
     .brandkit-profile { display: flex; align-items: center; gap: 13px; }
-    .brandkit-lines { display: flex; flex-direction: column; gap: 2px; text-align: right; white-space: nowrap; }
-    .brandkit-lines strong { color: var(--navy); font-size: 14px; }
-    .brandkit-lines span { color: var(--ink); font-size: 14px; font-weight: 700; }
-    .brandkit-lines small { color: var(--ink-soft); font-size: 12px; }
+    .brandkit-lines { display: flex; flex-direction: column; gap: 1px; text-align: right; white-space: nowrap; }
+    .brandkit-lines strong { color: var(--navy); font-size: 13px; }
+    .brandkit-lines span { color: var(--ink); font-size: 13px; font-weight: 700; }
+    .brandkit-lines small { color: var(--ink-soft); font-size: 11px; }
     .brandkit-qr {
       display: block;
-      width: 72px;
-      height: 72px;
+      width: 64px;
+      height: 64px;
       overflow: hidden;
       flex: 0 0 auto;
       border: 1px solid var(--line);
-      border-radius: 10px;
+      border-radius: 9px;
       background: #fff;
       box-shadow: 0 5px 18px rgba(19,40,43,.10);
     }
     .brandkit-qr img { display: block; width: 100%; height: 100%; object-fit: cover; }
 
-    .topbar {
-      position: sticky;
-      top: 0;
-      z-index: 10;
-      backdrop-filter: blur(18px);
-      background: rgba(245,240,232,.88);
-      border-bottom: 1px solid rgba(19,40,43,.10);
-    }
-    .topbar-inner {
-      min-height: 62px;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 16px;
-    }
-    .brand { font-weight: 800; letter-spacing: -.02em; }
-    .nav { display: flex; gap: 18px; color: var(--ink-soft); font-size: 14px; }
-    .nav a { text-decoration: none; }
-    .nav a:hover { color: var(--teal); }
-
-    .hero { padding: 82px 0 46px; }
+    .hero { padding: 66px 0 46px; }
     .eyebrow {
       display: inline-flex;
       align-items: center;
@@ -177,6 +149,7 @@
     .toggle button.active { background: var(--card); color: var(--ink); box-shadow: 0 4px 16px rgba(19,40,43,.10); font-weight: 800; }
 
     section { padding: 42px 0; }
+    section[id] { scroll-margin-top: 112px; }
     .section-head { display: grid; grid-template-columns: 1fr minmax(260px, 440px); gap: 30px; align-items: end; margin-bottom: 24px; }
     .section-no { color: var(--coral); font-size: 13px; font-weight: 900; letter-spacing: .16em; }
     h2 { margin: 6px 0 0; font-size: clamp(30px, 4.2vw, 52px); line-height: 1.12; letter-spacing: -.045em; }
@@ -335,7 +308,7 @@
 
     @media (max-width: 900px) {
       .nav { display: none; }
-      .brandkit-surface { gap: 18px; }
+      .topbar-inner { grid-template-columns: auto auto; justify-content: space-between; gap: 18px; }
       .verdict, .section-head, .edu-layout, .cost-layout, .size-grid { grid-template-columns: 1fr; }
       .grid-3, .method-grid { grid-template-columns: repeat(2, 1fr); }
       .occupation-grid { grid-template-columns: repeat(2, 1fr); }
@@ -343,13 +316,13 @@
     }
     @media (max-width: 620px) {
       .wrap { width: min(100% - 24px, 1160px); }
-      .brandkit-masthead { padding-top: 12px; }
-      .brandkit-surface { grid-template-columns: 1fr; gap: 14px; padding: 17px 15px 15px 19px; }
-      .brandkit-profile { justify-content: space-between; }
-      .brandkit-lines { text-align: left; white-space: normal; }
-      .brandkit-lines small { max-width: 240px; line-height: 1.45; }
-      .brandkit-qr { width: 68px; height: 68px; }
-      .hero { padding-top: 56px; }
+      .topbar-inner { min-height: 84px; grid-template-columns: minmax(0, 1fr) auto; gap: 12px; padding: 9px 0; }
+      .topbar-brand-name { font-size: 24px; }
+      .topbar-report { font-size: 11px; }
+      .topbar-mobile-id { display: block; margin-top: 1px; color: var(--ink-soft); font-size: 10px; line-height: 1.35; }
+      .brandkit-lines { display: none; }
+      .brandkit-qr { width: 58px; height: 58px; }
+      .hero { padding-top: 48px; }
       .toolbar { align-items: flex-start; flex-direction: column; }
       .grid-2, .grid-3, .truths, .method-grid, .cluster-list, .profit-grid { grid-template-columns: 1fr; }
       .insight-strip { grid-template-columns: 1fr; }
@@ -374,28 +347,13 @@
   </style>
 </head>
 <body>
-  <aside class="brandkit-masthead" aria-label="东哥慢富品牌信息">
-    <div class="wrap brandkit-surface">
-      <div class="brandkit-title">
-        <strong class="brandkit-name">东哥慢富</strong>
-        <span class="brandkit-topic">Shenzhen Salary Report · Data Insight</span>
-      </div>
-      <div class="brandkit-profile">
-        <div class="brandkit-lines">
-          <strong>张利东 | 香港保险顾问</strong>
-          <span>公众号：东哥在湾区</span>
-          <small>关注东哥，保护中产财富，一起慢慢变富</small>
-        </div>
-        <a class="brandkit-qr" href="https://dongge.surge.sh/" target="_blank" rel="noopener" aria-label="访问东哥慢富主页并添加东哥微信">
-          <img src="https://dongge.surge.sh/assets/brand/ZHANGLidong-QR.jpg" width="72" height="72" alt="东哥个人微信二维码">
-        </a>
-      </div>
-    </div>
-  </aside>
-
   <header class="topbar">
     <div class="wrap topbar-inner">
-      <div class="brand">深圳工资数据解剖</div>
+      <div class="topbar-brand">
+        <strong class="topbar-brand-name">东哥慢富</strong>
+        <span class="topbar-report">深圳工资数据解剖</span>
+        <small class="topbar-mobile-id">张利东｜香港保险顾问 · 公众号：东哥在湾区</small>
+      </div>
       <nav class="nav" aria-label="页面导航">
         <a href="#distribution">工资分布</a>
         <a href="#industry">行业差异</a>
@@ -403,6 +361,16 @@
         <a href="#cost">人工成本</a>
         <a href="#method">口径</a>
       </nav>
+      <div class="brandkit-profile">
+        <div class="brandkit-lines">
+          <strong>张利东 | 香港保险顾问</strong>
+          <span>公众号：东哥在湾区</span>
+          <small>关注东哥，保护中产财富，一起慢慢变富</small>
+        </div>
+        <a class="brandkit-qr" href="https://dongge.surge.sh/" target="_blank" rel="noopener" aria-label="访问东哥慢富主页并添加东哥微信">
+          <img src="https://dongge.surge.sh/assets/brand/ZHANGLidong-QR.jpg" width="64" height="64" alt="东哥个人微信二维码">
+        </a>
+      </div>
     </div>
   </header>
 
