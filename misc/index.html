@@ -1,18 +1,621 @@
 <!doctype html>
 <html lang="zh-CN">
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
-<title>misc</title>
-<style>
-body{font-family:"Segoe UI","Microsoft YaHei",Arial,sans-serif;max-width:980px;margin:36px auto;padding:0 20px;line-height:1.6;color:#202124}
-h1{font-size:26px} .meta{color:#5f6368;font-size:13px} li{margin:7px 0} a{color:#0b57d0;text-decoration:none} a:hover{text-decoration:underline}
-</style>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="深圳市2025年人力资源市场工资价位及行业人工成本信息分析">
+  <title>深圳工资真相｜2025 人力资源市场工资价位分析</title>
+  <style>
+    :root {
+      --ink: #13282b;
+      --ink-soft: #3d5558;
+      --paper: #f5f0e8;
+      --card: #fffdf8;
+      --line: #d9d2c5;
+      --teal: #0d8178;
+      --teal-soft: #d9efeb;
+      --coral: #e86f51;
+      --gold: #d5a43f;
+      --navy: #173d49;
+      --shadow: 0 20px 50px rgba(22, 48, 51, .10);
+    }
+
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      color: var(--ink);
+      background:
+        radial-gradient(circle at 8% 0%, rgba(13,129,120,.12), transparent 28rem),
+        radial-gradient(circle at 94% 14%, rgba(232,111,81,.10), transparent 24rem),
+        var(--paper);
+      font-family: Inter, "Segoe UI", "PingFang SC", "Microsoft YaHei", sans-serif;
+      line-height: 1.65;
+    }
+
+    a { color: inherit; }
+    button { font: inherit; }
+    .wrap { width: min(1160px, calc(100% - 36px)); margin: 0 auto; }
+
+    .topbar {
+      position: sticky;
+      top: 0;
+      z-index: 10;
+      backdrop-filter: blur(18px);
+      background: rgba(245,240,232,.88);
+      border-bottom: 1px solid rgba(19,40,43,.10);
+    }
+    .topbar-inner {
+      min-height: 62px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+    }
+    .brand { font-weight: 800; letter-spacing: -.02em; }
+    .nav { display: flex; gap: 18px; color: var(--ink-soft); font-size: 14px; }
+    .nav a { text-decoration: none; }
+    .nav a:hover { color: var(--teal); }
+
+    .hero { padding: 82px 0 46px; }
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      color: var(--teal);
+      font-size: 13px;
+      font-weight: 800;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+    }
+    .eyebrow::before { content: ""; width: 28px; height: 2px; background: currentColor; }
+    h1 {
+      max-width: 900px;
+      margin: 20px 0 18px;
+      font-size: clamp(42px, 7vw, 82px);
+      line-height: 1.04;
+      letter-spacing: -.055em;
+    }
+    h1 em { color: var(--coral); font-style: normal; }
+    .lead { max-width: 830px; margin: 0; font-size: clamp(18px, 2.2vw, 24px); color: var(--ink-soft); }
+    .meta-row { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 28px; }
+    .chip {
+      padding: 7px 12px;
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      background: rgba(255,253,248,.75);
+      font-size: 13px;
+      color: var(--ink-soft);
+    }
+
+    .verdict {
+      display: grid;
+      grid-template-columns: 1.15fr .85fr;
+      gap: 0;
+      overflow: hidden;
+      border-radius: 28px;
+      background: var(--navy);
+      color: #f7fbfa;
+      box-shadow: var(--shadow);
+    }
+    .verdict-copy { padding: clamp(28px, 5vw, 56px); }
+    .verdict-copy h2 { margin: 0 0 16px; font-size: clamp(27px, 4vw, 48px); line-height: 1.15; letter-spacing: -.04em; }
+    .verdict-copy p { margin: 0; color: #c7dcda; font-size: 17px; }
+    .verdict-number {
+      display: grid;
+      place-items: center;
+      min-height: 290px;
+      padding: 36px;
+      background: linear-gradient(145deg, var(--coral), #f1a05d);
+      color: #192b2d;
+      text-align: center;
+    }
+    .verdict-number strong { display: block; font-size: clamp(58px, 8vw, 100px); line-height: .95; letter-spacing: -.07em; }
+    .verdict-number span { display: block; margin-top: 12px; font-weight: 800; }
+
+    .toolbar { display: flex; align-items: center; justify-content: space-between; gap: 18px; margin: 54px 0 20px; }
+    .toolbar p { margin: 0; color: var(--ink-soft); }
+    .toggle { display: inline-flex; padding: 4px; border-radius: 999px; background: #e8e1d6; }
+    .toggle button { border: 0; border-radius: 999px; padding: 8px 14px; background: transparent; color: var(--ink-soft); cursor: pointer; }
+    .toggle button.active { background: var(--card); color: var(--ink); box-shadow: 0 4px 16px rgba(19,40,43,.10); font-weight: 800; }
+
+    section { padding: 42px 0; }
+    .section-head { display: grid; grid-template-columns: 1fr minmax(260px, 440px); gap: 30px; align-items: end; margin-bottom: 24px; }
+    .section-no { color: var(--coral); font-size: 13px; font-weight: 900; letter-spacing: .16em; }
+    h2 { margin: 6px 0 0; font-size: clamp(30px, 4.2vw, 52px); line-height: 1.12; letter-spacing: -.045em; }
+    .section-note { margin: 0; color: var(--ink-soft); }
+
+    .card { background: var(--card); border: 1px solid rgba(19,40,43,.09); border-radius: 24px; box-shadow: var(--shadow); }
+    .pad { padding: clamp(22px, 4vw, 38px); }
+    .grid-2 { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 20px; }
+    .grid-3 { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 16px; }
+
+    .metric { padding: 22px; border-radius: 20px; background: rgba(255,255,255,.58); border: 1px solid var(--line); }
+    .metric-label { color: var(--ink-soft); font-size: 13px; }
+    .metric strong { display: block; margin-top: 5px; font-size: 30px; line-height: 1.1; letter-spacing: -.04em; }
+    .metric small { display: block; margin-top: 8px; color: var(--ink-soft); }
+
+    .percentile-card { padding: 34px 30px 26px; }
+    .scale-wrap { position: relative; height: 148px; margin: 30px 8px 0; }
+    .scale-line {
+      position: absolute;
+      top: 56px;
+      left: 0;
+      right: 0;
+      height: 14px;
+      border-radius: 99px;
+      background: linear-gradient(90deg, #b7d9d5 0 36.4%, #70b9af 36.4% 58.4%, #e9a873 58.4% 94.6%, #dd765a 94.6%);
+    }
+    .marker { position: absolute; top: 31px; transform: translateX(-50%); text-align: center; white-space: nowrap; }
+    .marker::after { content: ""; display: block; width: 3px; height: 62px; margin: 7px auto 0; border-radius: 2px; background: var(--ink); }
+    .marker strong { display: block; font-size: 17px; }
+    .marker span { display: block; color: var(--ink-soft); font-size: 12px; }
+    .marker.median strong { color: var(--coral); font-size: 21px; }
+    .axis-labels { display: flex; justify-content: space-between; margin-top: 85px; color: var(--ink-soft); font-size: 12px; }
+
+    .insight-strip { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px; overflow: hidden; margin-top: 20px; border: 1px solid var(--line); border-radius: 20px; background: var(--line); }
+    .insight-strip article { padding: 22px; background: var(--card); }
+    .insight-strip b { display: block; margin-bottom: 7px; font-size: 18px; }
+    .insight-strip p { margin: 0; color: var(--ink-soft); font-size: 14px; }
+
+    .bar-list { display: grid; gap: 13px; }
+    .bar-row { display: grid; grid-template-columns: minmax(190px, 280px) 1fr 104px; gap: 16px; align-items: center; }
+    .bar-name { font-size: 14px; line-height: 1.3; }
+    .bar-track { height: 12px; border-radius: 99px; background: #e9e4dc; overflow: hidden; }
+    .bar-fill { height: 100%; width: 0; border-radius: inherit; background: var(--teal); transition: width .7s ease; }
+    .bar-row.hot .bar-fill { background: var(--coral); }
+    .bar-row.baseline .bar-track { outline: 2px solid rgba(213,164,63,.52); outline-offset: 2px; }
+    .bar-value { text-align: right; font-variant-numeric: tabular-nums; font-weight: 800; font-size: 14px; }
+    .legend { display: flex; flex-wrap: wrap; gap: 18px; margin: 0 0 20px; color: var(--ink-soft); font-size: 13px; }
+    .legend i { display: inline-block; width: 10px; height: 10px; margin-right: 6px; border-radius: 50%; background: var(--teal); }
+    .legend .coral { background: var(--coral); }
+    .legend .gold { background: var(--gold); }
+
+    .size-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; }
+    .size-note { padding: 30px; background: var(--teal-soft); border-radius: 22px; }
+    .size-note strong { display: block; font-size: 24px; line-height: 1.25; }
+    .size-note p { margin-bottom: 0; color: var(--ink-soft); }
+    .paired { display: grid; gap: 18px; }
+    .paired-row { display: grid; grid-template-columns: 76px 1fr; gap: 14px; align-items: center; }
+    .paired-bars { display: grid; gap: 7px; }
+    .mini-bar { position: relative; height: 22px; border-radius: 6px; background: #ece6dd; overflow: hidden; }
+    .mini-bar span { display: block; height: 100%; border-radius: inherit; background: var(--teal); }
+    .mini-bar.ceiling span { background: var(--coral); }
+    .mini-bar b { position: absolute; inset: 0 7px; display: flex; align-items: center; justify-content: flex-end; color: #fff; font-size: 11px; }
+
+    .edu-layout { display: grid; grid-template-columns: 1.05fr .95fr; gap: 24px; }
+    .stair { display: grid; gap: 10px; }
+    .stair-row { display: grid; grid-template-columns: 116px 1fr 98px; align-items: center; gap: 12px; }
+    .stair-block { height: 34px; border-radius: 8px; background: linear-gradient(90deg, var(--teal), #54b7a9); }
+    .stair-value { text-align: right; font-size: 14px; font-weight: 800; }
+    .return-table { width: 100%; border-collapse: collapse; font-size: 14px; }
+    .return-table th, .return-table td { padding: 11px 8px; border-bottom: 1px solid var(--line); text-align: right; }
+    .return-table th:first-child, .return-table td:first-child { text-align: left; }
+    .return-table th { color: var(--ink-soft); font-size: 12px; }
+
+    .occupation-grid { display: grid; grid-template-columns: repeat(5, minmax(0,1fr)); gap: 12px; }
+    .occupation { min-height: 128px; padding: 18px; border-radius: 18px; border: 1px solid var(--line); background: rgba(255,255,255,.55); }
+    .occupation:nth-child(-n+3) { background: var(--navy); color: white; border-color: transparent; }
+    .occupation span { display: block; font-size: 13px; line-height: 1.35; min-height: 38px; color: var(--ink-soft); }
+    .occupation:nth-child(-n+3) span { color: #c9dedd; }
+    .occupation strong { display: block; margin-top: 16px; font-size: 22px; line-height: 1; letter-spacing: -.035em; }
+
+    .cluster-list { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px 26px; }
+
+    .cost-layout { display: grid; grid-template-columns: .8fr 1.2fr; gap: 30px; align-items: center; }
+    .donut {
+      position: relative;
+      width: min(280px, 70vw);
+      aspect-ratio: 1;
+      margin: auto;
+      border-radius: 50%;
+      display: grid;
+      place-items: center;
+      background: conic-gradient(var(--teal) 0 83.4%, var(--coral) 83.4% 92.4%, var(--gold) 92.4% 95%, #8cb8c1 95% 100%);
+    }
+    .donut::before { content: ""; position: absolute; width: 58%; height: 58%; border-radius: 50%; background: var(--card); }
+    .donut-center { position: relative; z-index: 1; text-align: center; }
+    .donut-center strong { display: block; font-size: 42px; line-height: 1; }
+    .donut-center span { color: var(--ink-soft); font-size: 13px; }
+    .stacked { display: flex; height: 18px; overflow: hidden; border-radius: 99px; background: #eee; }
+    .stacked span { height: 100%; }
+    .cost-list { display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px; margin-top: 20px; }
+    .cost-item { display: flex; justify-content: space-between; gap: 12px; padding: 11px 13px; border: 1px solid var(--line); border-radius: 12px; }
+    .cost-item span { color: var(--ink-soft); }
+
+    .warning { padding: 28px; border-left: 5px solid var(--coral); background: #fff1ea; border-radius: 0 20px 20px 0; }
+    .warning h3 { margin: 0 0 8px; font-size: 22px; }
+    .warning p { margin: 0; color: var(--ink-soft); }
+
+    .truths { display: grid; grid-template-columns: repeat(2, 1fr); gap: 16px; }
+    .truth { padding: 24px; border-top: 4px solid var(--teal); }
+    .truth:nth-child(2n) { border-top-color: var(--coral); }
+    .truth b { font-size: 19px; }
+    .truth p { margin-bottom: 0; color: var(--ink-soft); }
+
+    .profit-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 18px; margin-top: 20px; }
+    .profit-card { padding: 24px; }
+    .profit-card h3 { margin: 0 0 14px; font-size: 21px; }
+    .profit-card ul { list-style: none; margin: 0; padding: 0; display: grid; gap: 10px; }
+    .profit-card li { display: flex; justify-content: space-between; gap: 14px; padding-bottom: 8px; border-bottom: 1px solid var(--line); }
+    .profit-card li:last-child { border-bottom: 0; padding-bottom: 0; }
+    .profit-card b { font-variant-numeric: tabular-nums; }
+    .positive h3, .positive b { color: var(--teal); }
+    .negative h3, .negative b { color: var(--coral); }
+
+    details { margin-top: 20px; border: 1px solid var(--line); border-radius: 18px; background: var(--card); }
+    summary { cursor: pointer; padding: 18px 22px; font-weight: 800; }
+    .table-wrap { overflow-x: auto; padding: 0 22px 22px; }
+    .data-table { width: 100%; border-collapse: collapse; min-width: 760px; font-size: 13px; }
+    .data-table th, .data-table td { padding: 10px; border-bottom: 1px solid var(--line); text-align: right; font-variant-numeric: tabular-nums; }
+    .data-table th:first-child, .data-table td:first-child { text-align: left; }
+    .data-table th { position: sticky; top: 0; background: var(--card); color: var(--ink-soft); }
+
+    .method { background: var(--navy); color: #eef8f6; }
+    .method .section-note, .method p, .method li { color: #c6dad8; }
+    .method-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 14px; }
+    .method-item { padding: 20px; border: 1px solid rgba(255,255,255,.14); border-radius: 16px; }
+    .method-item b { display: block; color: #fff; font-size: 20px; }
+    .method-item p { margin: 8px 0 0; font-size: 14px; }
+    .source-link { display: inline-flex; margin-top: 22px; padding: 11px 16px; border: 1px solid rgba(255,255,255,.28); border-radius: 999px; color: #fff; text-decoration: none; font-weight: 800; }
+    .source-link:hover { background: rgba(255,255,255,.08); }
+
+    footer { padding: 28px 0 44px; color: var(--ink-soft); font-size: 13px; }
+    .footer-inner { display: flex; justify-content: space-between; gap: 18px; border-top: 1px solid var(--line); padding-top: 20px; }
+
+    @media (max-width: 900px) {
+      .nav { display: none; }
+      .verdict, .section-head, .edu-layout, .cost-layout, .size-grid { grid-template-columns: 1fr; }
+      .grid-3, .method-grid { grid-template-columns: repeat(2, 1fr); }
+      .occupation-grid { grid-template-columns: repeat(2, 1fr); }
+      .bar-row { grid-template-columns: 150px 1fr 88px; }
+    }
+    @media (max-width: 620px) {
+      .wrap { width: min(100% - 24px, 1160px); }
+      .hero { padding-top: 56px; }
+      .toolbar { align-items: flex-start; flex-direction: column; }
+      .grid-2, .grid-3, .truths, .method-grid, .cluster-list, .profit-grid { grid-template-columns: 1fr; }
+      .insight-strip { grid-template-columns: 1fr; }
+      .occupation-grid { grid-template-columns: 1fr 1fr; }
+      .bar-row { grid-template-columns: 112px 1fr; gap: 10px; }
+      .bar-value { grid-column: 2; text-align: left; margin-top: -7px; }
+      .percentile-card { padding-inline: 16px; }
+      .percentile-card { overflow-x: auto; }
+      .scale-wrap { min-width: 620px; }
+      .marker strong { font-size: 14px; }
+      .marker span { font-size: 10px; }
+      .marker.median strong { font-size: 17px; }
+      .footer-inner { flex-direction: column; }
+    }
+    @media print {
+      .topbar, .toggle { display: none; }
+      body { background: #fff; }
+      .card { box-shadow: none; }
+      section { break-inside: avoid; }
+    }
+  </style>
 </head>
 <body>
-<h1>misc</h1>
-<div class="meta">生成：2026-08-22 15:26:42</div>
-<h2>文件</h2>
-<ul><li><a href="%E6%B7%B1%E5%9C%B3%E5%B8%82%202025%20%E5%B9%B4%E4%BA%BA%E5%8A%9B%E8%B5%84%E6%BA%90%E5%B8%82%E5%9C%BA%E5%B7%A5%E8%B5%84%E4%BB%B7%E4%BD%8D%E5%8F%8A%E8%A1%8C%E4%B8%9A%E4%BA%BA%E5%B7%A5%E6%88%90%E6%9C%AC%E4%BF%A1%E6%81%AF.pdf">深圳市 2025 年人力资源市场工资价位及行业人工成本信息.pdf</a></li></ul>
+  <header class="topbar">
+    <div class="wrap topbar-inner">
+      <div class="brand">深圳工资数据解剖</div>
+      <nav class="nav" aria-label="页面导航">
+        <a href="#distribution">工资分布</a>
+        <a href="#industry">行业差异</a>
+        <a href="#education">学历与工龄</a>
+        <a href="#cost">人工成本</a>
+        <a href="#method">口径</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <div class="wrap hero">
+      <div class="eyebrow">Shenzhen Salary Report · 2025</div>
+      <h1>深圳有月薪过万的工作吗？<br><em>有，而且不少；但不是多数。</em></h1>
+      <p class="lead">深圳全行业企业雇员的工资中位数为 96,100 元/年，折合约 8,008 元/月。月薪一万并非稀缺，却已经站在中位数之上。</p>
+      <div class="meta-row">
+        <span class="chip">4,794 家企业</span>
+        <span class="chip">19 个行业门类</span>
+        <span class="chip">2024 年实际数据</span>
+        <span class="chip">2025 年发布</span>
+        <span class="chip">75 张原始表</span>
+      </div>
+    </div>
+
+    <div class="wrap verdict">
+      <div class="verdict-copy">
+        <h2>一万元不是深圳工资的“起步价”，而是分布中段偏上的位置。</h2>
+        <p>由于年薪 12 万元位于全行业第 50 分位（9.61 万）与第 75 分位（15.42 万）之间，能确定的是：月薪过万者占比高于 25%、低于 50%。报告没有给出精确比例，任何“深圳多少人月薪过万”的单点数字都需要额外假设。</p>
+      </div>
+      <div class="verdict-number">
+        <div><strong>¥8,008</strong><span>全行业工资中位数 · 折算月薪</span></div>
+      </div>
+    </div>
+
+    <div class="wrap toolbar">
+      <p>页面默认将报告年薪除以 12，便于直观理解；这不等于每月固定到账金额。</p>
+      <div class="toggle" aria-label="金额口径切换">
+        <button class="active" data-mode="monthly">折算月薪</button>
+        <button data-mode="annual">报告年薪</button>
+      </div>
+    </div>
+
+    <section id="distribution" class="wrap">
+      <div class="section-head">
+        <div><div class="section-no">01 · DISTRIBUTION</div><h2>真实世界不是平均数，<br>而是一条很宽的分布。</h2></div>
+        <p class="section-note">同在深圳，第 90 分位工资约为第 10 分位的 4.5 倍。讨论“深圳工资”却只报一个平均数，几乎必然误导。</p>
+      </div>
+      <div class="card percentile-card">
+        <div class="grid-3">
+          <div class="metric"><span class="metric-label">中间一半的下界 · P25</span><strong class="money" data-annual="70479"></strong><small>25% 的样本不高于此值</small></div>
+          <div class="metric"><span class="metric-label">全行业中位数 · P50</span><strong class="money" data-annual="96100"></strong><small>一半更低，一半更高</small></div>
+          <div class="metric"><span class="metric-label">高收入门槛 · P90</span><strong class="money" data-annual="249800"></strong><small>仅约 10% 的样本高于此值</small></div>
+        </div>
+        <div class="scale-wrap" aria-label="全行业工资分位数分布">
+          <div class="scale-line"></div>
+          <div class="marker" style="left:20.9%"><strong class="money short" data-annual="55200"></strong><span>P10</span></div>
+          <div class="marker" style="left:26.7%"><strong class="money short" data-annual="70479"></strong><span>P25</span></div>
+          <div class="marker median" style="left:36.4%"><strong class="money short" data-annual="96100"></strong><span>P50</span></div>
+          <div class="marker" style="left:58.4%"><strong class="money short" data-annual="154213"></strong><span>P75</span></div>
+          <div class="marker" style="left:94.6%"><strong class="money short" data-annual="249800"></strong><span>P90</span></div>
+          <div class="axis-labels"><span>低位</span><span>中位</span><span>高位</span></div>
+        </div>
+      </div>
+      <div class="insight-strip">
+        <article><b>月薪过万：不是少数传奇</b><p>12 万年薪落在 P50 与 P75 之间，人数占比处于 25%-50% 这个区间。</p></article>
+        <article><b>但 8,000 元才是中位数</b><p>短视频和白领朋友圈显著高估高薪岗位的可见度，统计分布会把这种错觉打回原形。</p></article>
+        <article><b>年薪不能直接当月薪</b><p>工资价位包含基本工资、绩效、津补贴、加班费等，除以 12 只是阅读转换。</p></article>
+      </div>
+    </section>
+
+    <section id="industry" class="wrap">
+      <div class="section-head">
+        <div><div class="section-no">02 · INDUSTRY</div><h2>行业，远比公司大小<br>更能解释工资差异。</h2></div>
+        <p class="section-note">金融业中位数是住宿餐饮业的 3.1 倍。所谓“深圳工资”，其实是多个收入世界叠在同一座城市里。</p>
+      </div>
+      <div class="card pad">
+        <div class="legend"><span><i></i>普通行业</span><span><i class="coral"></i>头部行业</span><span><i class="gold"></i>全行业参照</span></div>
+        <div id="industry-bars" class="bar-list"></div>
+      </div>
+      <details>
+        <summary>查看 15 个行业的完整五分位数据</summary>
+        <div class="table-wrap"><table class="data-table" id="industry-table"></table></div>
+      </details>
+    </section>
+
+    <section class="wrap">
+      <div class="section-head">
+        <div><div class="section-no">03 · COMPANY SIZE</div><h2>大公司不一定抬高中位数，<br>但会明显抬高天花板。</h2></div>
+        <p class="section-note">四类企业的中位数都在 9.56 万至 10.13 万元之间；真正拉开差距的是第 90 分位。</p>
+      </div>
+      <div class="card pad size-grid">
+        <div id="size-bars" class="paired"></div>
+        <div class="size-note">
+          <strong>大型企业 P90 是微型企业的 1.52 倍，但两者工资中位数几乎相同。</strong>
+          <p>底层规律很直接：进入大企业并不会自动让普通岗位工资跃升，却更容易接触到高价值岗位、管理层级和奖金空间。公司规模影响的是上限，不是人人都能兑现的底薪。</p>
+        </div>
+      </div>
+    </section>
+
+    <section id="education" class="wrap">
+      <div class="section-head">
+        <div><div class="section-no">04 · EDUCATION & TENURE</div><h2>学历不是装饰品，<br>它决定工龄能否复利。</h2></div>
+        <p class="section-note">高学历往往对应更高价值的岗位入口；随着经验积累，差距继续扩大。数据是相关关系，不是学历本身的纯因果收益。</p>
+      </div>
+      <div class="edu-layout">
+        <div class="card pad"><div id="education-bars" class="stair"></div></div>
+        <div class="card pad">
+          <h3 style="margin-top:0">同一学历：入行一年内 vs 11 年以上</h3>
+          <table class="return-table">
+            <thead><tr><th>学历</th><th>≤1 年</th><th>11 年以上</th><th>倍数</th></tr></thead>
+            <tbody id="tenure-table"></tbody>
+          </table>
+          <div class="warning" style="margin-top:22px">
+            <h3>最刺眼的一条</h3>
+            <p>初中及以下，1 年内与 11 年以上的工资中位数几乎不变；本科和硕士则接近翻倍。单纯熬年头不会自动升值，能积累、可迁移的技能才会。</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="wrap">
+      <div class="section-head">
+        <div><div class="section-no">05 · OCCUPATIONS</div><h2>同城不同命：岗位之间<br>可以相差五倍。</h2></div>
+        <p class="section-note">以下选取报告中的典型职业中位数。它们比“深圳平均工资”更接近个人择业时真正该看的数据。</p>
+      </div>
+      <div id="occupation-grid" class="occupation-grid"></div>
+    </section>
+
+    <section class="wrap">
+      <div class="section-head">
+        <div><div class="section-no">06 · EMERGING INDUSTRIES</div><h2>“战略新兴”四个字，<br>不自动等于高工资。</h2></div>
+        <p class="section-note">数字创意、低空经济、软件服务居前；现代时尚、安全节能环保仍低于全行业中位数。产业标签不能替代具体岗位判断。</p>
+      </div>
+      <div class="card pad"><div id="cluster-bars" class="cluster-list"></div></div>
+    </section>
+
+    <section id="cost" class="wrap">
+      <div class="section-head">
+        <div><div class="section-no">07 · LABOR COST</div><h2>企业为一个人付的钱，<br>不等于员工拿到的钱。</h2></div>
+        <p class="section-note">全市人工成本构成中，劳动报酬占 83.4%；保险、住房、福利等非工资成本合计 16.6%。</p>
+      </div>
+      <div class="card pad cost-layout">
+        <div class="donut"><div class="donut-center"><strong>83.4%</strong><span>劳动报酬占比</span></div></div>
+        <div>
+          <h3 style="margin-top:0;font-size:27px">每 100 元人工成本去了哪里</h3>
+          <div class="stacked" aria-label="人工成本构成">
+            <span style="width:83.4%;background:var(--teal)"></span><span style="width:9%;background:var(--coral)"></span><span style="width:2.6%;background:var(--gold)"></span><span style="width:5%;background:#8cb8c1"></span>
+          </div>
+          <div class="cost-list">
+            <div class="cost-item"><span>劳动报酬</span><b>83.4%</b></div>
+            <div class="cost-item"><span>保险费用</span><b>9.0%</b></div>
+            <div class="cost-item"><span>福利费用</span><b>2.7%</b></div>
+            <div class="cost-item"><span>住房费用</span><b>2.6%</b></div>
+            <div class="cost-item"><span>其他人工成本</span><b>1.8%</b></div>
+            <div class="cost-item"><span>教育＋劳动保护</span><b>0.5%</b></div>
+          </div>
+          <p style="color:var(--ink-soft);margin-bottom:0">按构成比例换算，企业总人工成本约为劳动报酬的 1.20 倍。注意：这是全市成本构成关系，不能拿“工资中位数”和“人工成本中位数”直接相除。</p>
+        </div>
+      </div>
+      <div class="profit-grid">
+        <article class="card profit-card positive">
+          <h3>每投入 100 元人工成本，利润较高</h3>
+          <ul><li><span>金融业</span><b>174 元</b></li><li><span>装卸搬运和仓储业</span><b>127 元</b></li><li><span>通用设备制造业</span><b>98 元</b></li><li><span>全市</span><b>44 元</b></li></ul>
+        </article>
+        <article class="card profit-card negative">
+          <h3>每投入 100 元人工成本，利润为负</h3>
+          <ul><li><span>文化、体育和娱乐业</span><b>-48 元</b></li><li><span>道路运输业</span><b>-16 元</b></li><li><span>餐饮业</span><b>-15 元</b></li><li><span>住宿和餐饮业</span><b>-7 元</b></li></ul>
+        </article>
+      </div>
+      <p style="margin:14px 4px 0;color:var(--ink-soft);font-size:13px">这里是“百元人工成本利润”，不是销售利润率；它反映每 100 元人工成本对应的利润总额。负值说明调查样本在该指标上总体承压，不能外推为每一家企业都亏损。</p>
+    </section>
+
+    <section class="wrap">
+      <div class="section-head">
+        <div><div class="section-no">08 · WHAT IT MEANS</div><h2>这份报告真正说明什么</h2></div>
+        <p class="section-note">数据没有证明“深圳遍地高薪”，也没有证明“深圳已经没有高薪”。它证明的是结构分化。</p>
+      </div>
+      <div class="truths">
+        <article class="card truth"><b>高薪是真实存在的，但集中度很高。</b><p>金融、软件、数字技术、管理岗和高学历资深岗位，把上端拉得很高；它们不是全体劳动者的日常。</p></article>
+        <article class="card truth"><b>普通服务岗的现实，就是四五千元。</b><p>保洁员中位数折算约 4,337 元/月，保安约 5,189 元，餐厅服务员约 4,612 元。深圳当然存在大量万元以下岗位。</p></article>
+        <article class="card truth"><b>大厂光环主要体现在上限。</b><p>大型与微型企业工资中位数接近，但大型企业 P90 明显更高。进入平台只是拿到入场券，不等于自动成为高薪者。</p></article>
+        <article class="card truth"><b>“身边都是月薪两万”是样本偏差。</b><p>如果社交圈集中在金融、互联网和专业服务业，看到的分布本来就不是深圳全体企业雇员的分布。</p></article>
+      </div>
+    </section>
+
+    <section id="method" class="method">
+      <div class="wrap">
+        <div class="section-head">
+          <div><div class="section-no" style="color:#72d3c6">09 · METHODOLOGY</div><h2>先看口径，再谈结论。</h2></div>
+          <p class="section-note">这是企业薪酬调查，不是深圳全体居民收入调查，更不是招聘网站报价。</p>
+        </div>
+        <div class="method-grid">
+          <div class="method-item"><b>调查谁</b><p>4,794 家企业，以及由调查企业支付工资的劳动者，覆盖 19 个行业门类；公布表要求至少 20 家企业、100 名员工。</p></div>
+          <div class="method-item"><b>哪个时期</b><p>报告名为“2025 年”，但时期指标是 2024 年 1 月 1 日至 12 月 31 日。</p></div>
+          <div class="method-item"><b>工资是什么</b><p>基本工资、绩效工资、津补贴、加班工资和特殊情况下支付的工资等全年合计。</p></div>
+          <div class="method-item"><b>哪些没覆盖</b><p>不能代表公务员、未就业者、自由职业者和全部个体经营者；也不能等同到手收入。</p></div>
+        </div>
+        <div class="warning" style="margin-top:18px;background:rgba(232,111,81,.13);color:#fff">
+          <h3>关于“税前还是税后”</h3>
+          <p style="color:#d8e7e5">文件没有直接写“税前”二字。但它来自企业端薪酬调查，统计企业支付的工资报酬合计，因此应按企业工资核算口径理解，而不是员工银行卡实际到账额。这是依据定义作出的口径判断，不是报告原文。</p>
+        </div>
+        <a class="source-link" href="%E6%B7%B1%E5%9C%B3%E5%B8%82%202025%20%E5%B9%B4%E4%BA%BA%E5%8A%9B%E8%B5%84%E6%BA%90%E5%B8%82%E5%9C%BA%E5%B7%A5%E8%B5%84%E4%BB%B7%E4%BD%8D%E5%8F%8A%E8%A1%8C%E4%B8%9A%E4%BA%BA%E5%B7%A5%E6%88%90%E6%9C%AC%E4%BF%A1%E6%81%AF.pdf">打开 79 页原始 PDF →</a>
+      </div>
+    </section>
+  </main>
+
+  <footer><div class="wrap footer-inner"><span>数据来源：深圳市人力资源和社会保障局《深圳市 2025 年人力资源市场工资价位及行业人工成本信息》</span><span>分析整理：2026-08-22</span></div></footer>
+
+  <script>
+    const industryData = [
+      {name:'金融业', p10:87497, p25:130448, p50:216176, p75:364763, p90:609670, hot:true},
+      {name:'信息传输、软件和信息技术服务业', p10:82746, p25:107062, p50:162400, p75:252850, p90:370238, hot:true},
+      {name:'科学研究和技术服务业', p10:72458, p25:95000, p50:132243, p75:192031, p90:285236},
+      {name:'卫生和社会工作', p10:69292, p25:84000, p50:110026, p75:170012, p90:259892},
+      {name:'交通运输、仓储和邮政业', p10:60865, p25:78902, p50:106145, p75:157302, p90:243600},
+      {name:'租赁和商务服务业', p10:56067, p25:71992, p50:104000, p75:165052, p90:247455},
+      {name:'全行业', p10:55200, p25:70479, p50:96100, p75:154213, p90:249800, baseline:true},
+      {name:'批发和零售业', p10:54326, p25:70015, p50:95760, p75:144000, p90:231140},
+      {name:'建筑业', p10:50700, p25:66090, p50:93476, p75:132000, p90:200355},
+      {name:'教育', p10:54364, p25:71320, p50:93300, p75:136625, p90:216000},
+      {name:'文化、体育和娱乐业', p10:46560, p25:60700, p50:93200, p75:152655, p90:241813},
+      {name:'水利、环境和公共设施管理业', p10:52200, p25:59934, p50:87282, p75:122631, p90:173210},
+      {name:'制造业', p10:54840, p25:66623, p50:85520, p75:124069, p90:199824},
+      {name:'房地产业', p10:48000, p25:63318, p50:84800, p75:135602, p90:240000},
+      {name:'居民服务、修理和其他服务业', p10:46760, p25:56800, p50:75110, p75:102462, p90:140000},
+      {name:'住宿和餐饮业', p10:45600, p25:54000, p50:69600, p75:93792, p90:132000}
+    ];
+
+    const sizeData = [
+      {name:'大型', median:95654, p90:336409}, {name:'中型', median:101327, p90:276000},
+      {name:'小型', median:95600, p90:240000}, {name:'微型', median:96000, p90:222000}
+    ];
+    const educationData = [
+      {name:'博士及以上', value:302489}, {name:'硕士研究生', value:263400}, {name:'大学本科', value:157508},
+      {name:'大学专科', value:106359}, {name:'高中/中专/技校', value:80076}, {name:'初中及以下', value:67219}
+    ];
+    const tenureData = [
+      {name:'硕士', start:168000, senior:317035}, {name:'本科', start:95966, senior:182700},
+      {name:'大专', start:77800, senior:119806}, {name:'高中/中专', start:67200, senior:82242},
+      {name:'初中及以下', start:66792, senior:67210}
+    ];
+    const occupations = [
+      {name:'证券期货基金专业人员', value:280000}, {name:'计算机程序设计员', value:215730},
+      {name:'计算机软件工程技术人员', value:184648}, {name:'人力资源管理专业人员', value:127717},
+      {name:'市场营销专业人员', value:120000}, {name:'销售人员', value:90267},
+      {name:'物流服务师', value:87320}, {name:'道路货运汽车驾驶员', value:76327},
+      {name:'保安员', value:62264}, {name:'保洁员', value:52048}
+    ];
+    const clusters = [
+      {name:'数字创意', value:187705}, {name:'低空经济与空天', value:147000}, {name:'软件与信息服务', value:135600},
+      {name:'人工智能', value:125815}, {name:'机器人', value:114457}, {name:'生物医药', value:113758},
+      {name:'海洋产业', value:113053}, {name:'智能传感器', value:109000}, {name:'高端医疗器械', value:101923},
+      {name:'整体', value:94143}, {name:'安全节能环保', value:79458}, {name:'现代时尚', value:79079}
+    ];
+
+    let mode = 'monthly';
+    const n = value => Math.round(value).toLocaleString('zh-CN');
+    function formatMoney(annual, short=false) {
+      if (mode === 'annual') return short ? `${(annual/10000).toFixed(1)}万` : `${(annual/10000).toFixed(2)} 万/年`;
+      const monthly = annual / 12;
+      return short ? `${(monthly/1000).toFixed(1)}k` : `${n(monthly)} 元/月`;
+    }
+
+    function renderStaticMoney() {
+      document.querySelectorAll('.money').forEach(el => { el.textContent = formatMoney(+el.dataset.annual, el.classList.contains('short')); });
+    }
+
+    function renderIndustries() {
+      const max = Math.max(...industryData.map(d => d.p50));
+      document.querySelector('#industry-bars').innerHTML = industryData.map(d => `
+        <div class="bar-row ${d.hot?'hot':''} ${d.baseline?'baseline':''}">
+          <div class="bar-name">${d.name}</div>
+          <div class="bar-track"><div class="bar-fill" style="width:${d.p50/max*100}%"></div></div>
+          <div class="bar-value">${formatMoney(d.p50)}</div>
+        </div>`).join('');
+      const cols = ['p10','p25','p50','p75','p90'];
+      document.querySelector('#industry-table').innerHTML = `<thead><tr><th>行业</th>${cols.map(c=>`<th>${c.toUpperCase()}</th>`).join('')}</tr></thead><tbody>` +
+        industryData.map(d=>`<tr><td>${d.name}</td>${cols.map(c=>`<td>${formatMoney(d[c])}</td>`).join('')}</tr>`).join('') + '</tbody>';
+    }
+
+    function renderSizes() {
+      const max = Math.max(...sizeData.map(d => d.p90));
+      document.querySelector('#size-bars').innerHTML = sizeData.map(d => `
+        <div class="paired-row"><b>${d.name}</b><div class="paired-bars">
+          <div class="mini-bar"><span style="width:${d.median/max*100}%"></span><b>中位 ${formatMoney(d.median)}</b></div>
+          <div class="mini-bar ceiling"><span style="width:${d.p90/max*100}%"></span><b>P90 ${formatMoney(d.p90)}</b></div>
+        </div></div>`).join('');
+    }
+
+    function renderEducation() {
+      const max = Math.max(...educationData.map(d=>d.value));
+      document.querySelector('#education-bars').innerHTML = educationData.map(d=>`
+        <div class="stair-row"><span>${d.name}</span><div class="stair-block" style="width:${d.value/max*100}%"></div><div class="stair-value">${formatMoney(d.value)}</div></div>`).join('');
+      document.querySelector('#tenure-table').innerHTML = tenureData.map(d=>`
+        <tr><td>${d.name}</td><td>${formatMoney(d.start,true)}</td><td>${formatMoney(d.senior,true)}</td><td>${(d.senior/d.start).toFixed(2)}×</td></tr>`).join('');
+    }
+
+    function renderOccupations() {
+      document.querySelector('#occupation-grid').innerHTML = occupations.map(d=>`
+        <article class="occupation"><span>${d.name}</span><strong>${formatMoney(d.value)}</strong></article>`).join('');
+    }
+
+    function renderClusters() {
+      const max = Math.max(...clusters.map(d=>d.value));
+      document.querySelector('#cluster-bars').innerHTML = clusters.map(d=>`
+        <div class="bar-row ${d.name==='整体'?'baseline':''}">
+          <div class="bar-name">${d.name}</div><div class="bar-track"><div class="bar-fill" style="width:${d.value/max*100}%"></div></div><div class="bar-value">${formatMoney(d.value)}</div>
+        </div>`).join('');
+    }
+
+    function renderAll() { renderStaticMoney(); renderIndustries(); renderSizes(); renderEducation(); renderOccupations(); renderClusters(); }
+    document.querySelectorAll('.toggle button').forEach(btn => btn.addEventListener('click', () => {
+      mode = btn.dataset.mode;
+      document.querySelectorAll('.toggle button').forEach(b=>b.classList.toggle('active', b===btn));
+      renderAll();
+    }));
+    renderAll();
+  </script>
 </body>
 </html>
