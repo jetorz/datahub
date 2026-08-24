@@ -1,0 +1,335 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>DongGe Surge 数据解读 · 2026-08-24</title>
+<style>
+:root{
+  --bg:#f5f2ec;
+  --paper:#fffdf9;
+  --ink:#171717;
+  --muted:#6f6a62;
+  --line:#ded7cc;
+  --soft:#ebe5dc;
+  --accent:#9f5d37;
+  --green:#2f6d52;
+  --red:#a34a3d;
+  --blue:#3f647f;
+  --shadow:0 18px 50px rgba(57,42,23,.08);
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  margin:0;
+  font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","Microsoft YaHei","PingFang SC",Arial,sans-serif;
+  color:var(--ink);
+  background:
+    radial-gradient(circle at 85% 3%,rgba(159,93,55,.10),transparent 32%),
+    linear-gradient(180deg,#fbfaf7 0,var(--bg) 100%);
+  line-height:1.65;
+}
+main{width:min(1180px,calc(100% - 34px));margin:0 auto;padding:42px 0 72px}
+.hero{
+  display:grid;grid-template-columns:minmax(0,1.5fr) minmax(280px,.7fr);
+  gap:28px;align-items:end;padding:34px;border:1px solid var(--line);
+  border-radius:28px;background:rgba(255,253,249,.88);box-shadow:var(--shadow);
+}
+.eyebrow{font-size:12px;letter-spacing:.15em;font-weight:800;color:var(--accent)}
+h1{font-size:clamp(34px,5vw,58px);line-height:1.05;margin:10px 0 14px;letter-spacing:-.03em}
+.lead{font-size:18px;color:#383532;max-width:800px;margin:0}
+.hero-note{padding:18px 20px;border-radius:20px;background:#1b1a18;color:#fff}
+.hero-note b{display:block;font-size:28px;line-height:1.1;margin-bottom:8px}
+.hero-note span{color:#d9d4cc;font-size:13px}
+.section{margin-top:28px;padding:28px;border:1px solid var(--line);border-radius:24px;background:rgba(255,253,249,.92);box-shadow:var(--shadow)}
+.section h2{margin:0 0 6px;font-size:27px}
+.section-intro{color:var(--muted);margin:0 0 22px}
+.grid4{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:14px}
+.metric{padding:20px;border:1px solid var(--soft);border-radius:18px;background:#fff}
+.metric .label{font-size:12px;color:var(--muted);font-weight:700;letter-spacing:.04em}
+.metric .value{font-size:36px;font-weight:800;line-height:1.05;margin:8px 0 4px}
+.metric .delta{font-size:13px;color:var(--muted)}
+.up{color:var(--green)!important;font-weight:700}
+.down{color:var(--red)!important;font-weight:700}
+.signal{
+  display:grid;grid-template-columns:72px minmax(0,1fr);gap:18px;
+  padding:22px 0;border-top:1px solid var(--soft)
+}
+.signal:first-of-type{border-top:0;padding-top:4px}
+.num{
+  width:58px;height:58px;border-radius:18px;display:flex;align-items:center;justify-content:center;
+  background:#1b1a18;color:#fff;font-size:22px;font-weight:800
+}
+.signal h3{margin:0 0 6px;font-size:21px}
+.signal p{margin:0;color:#403c37}
+.callout{
+  margin-top:13px;padding:14px 16px;border-left:4px solid var(--accent);
+  border-radius:10px;background:#f3ede5;font-weight:700
+}
+.two{display:grid;grid-template-columns:1fr 1fr;gap:18px}
+.chartbox{padding:20px;border:1px solid var(--soft);border-radius:18px;background:#fff}
+.chartbox h3{margin:0 0 16px;font-size:17px}
+.row{display:grid;grid-template-columns:130px 1fr 80px;gap:12px;align-items:center;margin:12px 0}
+.bar{height:15px;border-radius:999px;background:#ece8e1;overflow:hidden}
+.fill{height:100%;border-radius:inherit;background:linear-gradient(90deg,#9f5d37,#ca8961)}
+.fill.green{background:linear-gradient(90deg,#2f6d52,#64a184)}
+.fill.blue{background:linear-gradient(90deg,#3f647f,#78a0bc)}
+.small{font-size:12px;color:var(--muted)}
+.kpi-table{width:100%;border-collapse:collapse}
+.kpi-table th,.kpi-table td{padding:14px 12px;border-bottom:1px solid var(--soft);text-align:left;vertical-align:top}
+.kpi-table th{font-size:12px;letter-spacing:.04em;color:var(--muted)}
+.kpi-table td:first-child{font-weight:800}
+.tag{display:inline-block;padding:3px 8px;border-radius:999px;font-size:11px;font-weight:700;background:#eee8df;color:#5e5549}
+.actions{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px}
+.action{padding:20px;border-radius:18px;background:#1c1b19;color:#fff}
+.action h3{margin:0 0 8px;font-size:18px}
+.action p{margin:0;color:#d7d2ca;font-size:14px}
+footer{margin-top:24px;color:#7e786f;font-size:12px;text-align:center}
+strong.em{color:var(--accent)}
+@media(max-width:900px){
+  .hero,.two{grid-template-columns:1fr}
+  .grid4{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .actions{grid-template-columns:1fr}
+}
+@media(max-width:620px){
+  main{width:min(100% - 20px,1180px);padding-top:14px}
+  .hero,.section{padding:20px;border-radius:20px}
+  .grid4{grid-template-columns:1fr 1fr}
+  .metric .value{font-size:30px}
+  .signal{grid-template-columns:50px 1fr}
+  .num{width:44px;height:44px;border-radius:13px;font-size:18px}
+  .row{grid-template-columns:100px 1fr 58px;gap:8px;font-size:13px}
+}
+</style>
+</head>
+<body>
+<main>
+
+<section class="hero">
+  <div>
+    <div class="eyebrow">DONGGE · SURGE ANALYTICS INTERPRETATION</div>
+    <h1>Surge 数据真正告诉了我们什么</h1>
+    <p class="lead">
+      这份报告不纠缠“能不能百分之百识别真实用户”，而是把现有数据当作产品经营信号：
+      <strong class="em">谁在用、什么在增长、产品有没有形成自己的使用惯性、下一步该盯什么。</strong>
+    </p>
+  </div>
+  <div class="hero-note">
+    <b>核心结论</b>
+    dexercise 已经从“个人自用工具”进入“几十个外部使用来源真实运行、且近期仍在增长”的阶段。
+    <span>数据周期：2026-07-28 ～ 2026-08-24</span>
+  </div>
+</section>
+
+<section class="section">
+  <h2>一眼看懂：四个关键数字</h2>
+  <p class="section-intro">不要被 9.06k connections 之类的技术指标带偏。对产品判断最有价值的是下面四个数字。</p>
+  <div class="grid4">
+    <div class="metric">
+      <div class="label">主站独立访客</div>
+      <div class="value">116</div>
+      <div class="delta down">较上期 -56.25%</div>
+    </div>
+    <div class="metric">
+      <div class="label">主站访问次数</div>
+      <div class="value">405</div>
+      <div class="delta down">较上期 -35%</div>
+    </div>
+    <div class="metric">
+      <div class="label">dexercise 匿名独立来源</div>
+      <div class="value">47</div>
+      <div class="delta up">较上期 +50%</div>
+    </div>
+    <div class="metric">
+      <div class="label">dexercise 匿名连接数</div>
+      <div class="value">122</div>
+      <div class="delta up">较上期 +8.33%</div>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <h2>真正值得读出的 6 个信号</h2>
+  <p class="section-intro">以下判断按“数据 → 解释 → 对产品意味着什么”展开。</p>
+
+  <div class="signal">
+    <div class="num">01</div>
+    <div>
+      <h3>dexercise 已经不是“只有作者自己在用”</h3>
+      <p>
+        28 天内，主站识别到 116 个独立访客来源；运动库匿名统计端点识别到 47 个独立来源。
+        这不足以做精确人口普查，但已经足够确认：<strong>真实使用已经跨出作者本人和极少量测试的范围。</strong>
+      </p>
+      <div class="callout">产品判断：这是一个已经有外部使用者的小型真实产品，而不是纯开发玩具。</div>
+    </div>
+  </div>
+
+  <div class="signal">
+    <div class="num">02</div>
+    <div>
+      <h3>最重要的信号：主站流量跌，dexercise 使用却涨</h3>
+      <p>
+        主站 Visits -35%、Uniques -56.25%、Connections -43.95%；与此同时，dexercise 匿名 Uniques +50%、Connections +8.33%。
+        两组趋势发生了明显背离。
+      </p>
+      <div class="callout">产品判断：dexercise 的使用开始与主站曝光脱钩，说明它已经出现一定程度的留存、重复打开、转发或 PWA 直接使用。</div>
+    </div>
+  </div>
+
+  <div class="signal">
+    <div class="num">03</div>
+    <div>
+      <h3>dexercise 已经成为 DongGe Surge 站最核心的实际应用</h3>
+      <p>
+        今日热门页面中 `/dexercise/` 与 `/dexercise/index.html` 合计明显高于单纯首页访问；
+        带宽用量排名靠前的文件也几乎都属于 dexercise：图标、app.js、index.html、db.js、styles.css、exercises.json、service worker 等。
+      </p>
+      <div class="callout">经营判断：现在这个 Surge 站的“产品中心”不是首页，而是 dexercise。</div>
+    </div>
+  </div>
+
+  <div class="signal">
+    <div class="num">04</div>
+    <div>
+      <h3>粗略“产品渗透比”已经达到约 41%</h3>
+      <p>
+        47 个 dexercise 匿名独立来源，相当于主站 116 个独立访客的约 <strong>40.5%</strong>。
+        这不是严格转化率，但作为内部长期观察指标非常有用。
+      </p>
+      <div class="callout">经营判断：一个非常垂直的健身工具，其活跃来源规模已经相当于主站独立访问规模的四成，渗透并不低。</div>
+    </div>
+  </div>
+
+  <div class="signal">
+    <div class="num">05</div>
+    <div>
+      <h3>移动端优先是对的，但不能只围着 iPhone 做</h3>
+      <p>
+        主站识别的操作系统里 Android 102、Windows 80、iOS 79；浏览器中还有明显的 Chrome、Mobile Safari、MIUI Browser。
+        dexercise 匿名统计里同样能看到 Android、iOS、Windows。
+      </p>
+      <div class="callout">开发优先级：Android Chrome、iOS Safari/PWA、MIUI 浏览器都应该进入真实测试矩阵。</div>
+    </div>
+  </div>
+
+  <div class="signal">
+    <div class="num">06</div>
+    <div>
+      <h3>当前技术架构非常轻，没有必要复杂化</h3>
+      <p>
+        主站预计月带宽约 4.45 GB，缓存命中率 90.47%，HTTPS 99.88%，非加密连接为 0。
+        对当前量级而言，静态 PWA + Surge CDN 已经非常够用。
+      </p>
+      <div class="callout">架构判断：未来即使用户量再增长一个数量级，也没有理由为了“性能和成本焦虑”提前做复杂后端。</div>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <h2>趋势背离，是这份报告最大的价值</h2>
+  <p class="section-intro">如果只看总流量，会误判成“最近访问下降”。把主站和工具拆开后，结论完全不同。</p>
+  <div class="two">
+    <div class="chartbox">
+      <h3>主站：整体曝光明显下降</h3>
+      <div class="row"><span>Visits</span><div class="bar"><div class="fill" style="width:65%"></div></div><strong>-35%</strong></div>
+      <div class="row"><span>Uniques</span><div class="bar"><div class="fill" style="width:43.75%"></div></div><strong>-56.25%</strong></div>
+      <div class="row"><span>Connections</span><div class="bar"><div class="fill" style="width:56.05%"></div></div><strong>-43.95%</strong></div>
+      <p class="small">条形长度表示相对上期保留比例，不代表绝对流量。</p>
+    </div>
+    <div class="chartbox">
+      <h3>dexercise：使用信号反向增长</h3>
+      <div class="row"><span>Uniques</span><div class="bar"><div class="fill green" style="width:75%"></div></div><strong class="up">+50%</strong></div>
+      <div class="row"><span>Connections</span><div class="bar"><div class="fill green" style="width:54%"></div></div><strong class="up">+8.33%</strong></div>
+      <div class="row"><span>28 日活跃来源</span><div class="bar"><div class="fill blue" style="width:40.5%"></div></div><strong>47</strong></div>
+      <p class="small">这里最值得持续看的是方向，而不是追求“精确到人数”的统计幻觉。</p>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <h2>对“PWA 是否形成使用惯性”的判断</h2>
+  <p class="section-intro">现有数据已经出现一个很值得继续验证的模式。</p>
+  <div class="two">
+    <div class="chartbox">
+      <h3>首次使用路径</h3>
+      <p><strong>公众号 / 分享链接 → DongGe 主站 → dexercise</strong></p>
+      <p class="small">这类使用依赖你有没有持续传播入口。</p>
+    </div>
+    <div class="chartbox">
+      <h3>后续可能路径</h3>
+      <p><strong>手机桌面 PWA / 收藏 → dexercise</strong></p>
+      <p class="small">如果用户开始直接打开工具，主站流量下降并不意味着工具使用下降。</p>
+    </div>
+  </div>
+  <div class="callout">
+    当前“主站下降、工具增长”的组合，与 PWA 逐渐形成直接使用习惯是相容的。未来继续观察两者是否长期分离，就能进一步验证这个判断。
+  </div>
+</section>
+
+<section class="section">
+  <h2>以后每次看报告，只盯这 4 个 KPI</h2>
+  <p class="section-intro">不需要再被一堆 Surge 技术统计淹没。长期连续记录，趋势比单次值重要。</p>
+  <table class="kpi-table">
+    <thead>
+      <tr><th>KPI</th><th>当前值</th><th>它回答什么问题</th><th>重点看什么</th></tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>主站 Uniques</td><td>116</td>
+        <td>最近 28 天有多少不同访问来源进入整个 DongGe 站</td>
+        <td><span class="tag">曝光规模</span></td>
+      </tr>
+      <tr>
+        <td>dexercise Uniques</td><td>47</td>
+        <td>有多少不同来源真正触发了运动库匿名统计</td>
+        <td><span class="tag">产品活跃</span></td>
+      </tr>
+      <tr>
+        <td>dexercise Connections</td><td>122</td>
+        <td>运动库使用动作的总体活跃程度是否增加</td>
+        <td><span class="tag">使用强度</span></td>
+      </tr>
+      <tr>
+        <td>dexercise / 主站 Unique 比值</td><td>≈ 40.5%</td>
+        <td>工具使用规模相对主站曝光规模是否扩大</td>
+        <td><span class="tag">使用惯性</span></td>
+      </tr>
+    </tbody>
+  </table>
+</section>
+
+<section class="section">
+  <h2>现在最值得做的 3 件事</h2>
+  <div class="actions">
+    <div class="action">
+      <h3>1. 连续记录 2–3 个月</h3>
+      <p>不要再扩大 Surge 指标体系。先固定四个 KPI，每周或每月记录一次，建立趋势。</p>
+    </div>
+    <div class="action">
+      <h3>2. 对齐传播动作</h3>
+      <p>每次公众号、群分享、朋友圈推广后，看 dexercise 是否出现新的 Unique 与 Connections 增长，判断真正的产品转化。</p>
+    </div>
+    <div class="action">
+      <h3>3. 以后再补产品事件</h3>
+      <p>如果想进一步判断留存，可只增加少量匿名事件：启动、开始训练、完成训练。不要为了统计重做复杂账号体系。</p>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <h2>顺手值得修的一个小问题</h2>
+  <p>
+    今日出现 1 次 404：<code>/assets/brand/ZHANGLidong-QR.jpg</code>；
+    正常带宽记录中使用的是 <code>/assets/ZHANGLidong-QR.jpg</code>。
+    很可能存在一个旧页面、旧缓存或旧引用仍指向历史路径。
+  </p>
+  <div class="callout">优先级很低，但可以顺手查掉，避免未来继续积累无意义 404。</div>
+</section>
+
+<footer>
+  基于 DongGe · Surge 统计报告（生成时间：2026-08-24 14:42:36 +0800）整理 · ChatGPT 解读版
+</footer>
+
+</main>
+</body>
+</html>
