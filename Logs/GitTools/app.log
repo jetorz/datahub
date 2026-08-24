@@ -1,0 +1,12 @@
+2026-08-24 18:55:27.632 | INFO     | GitTools | MainThread | GitTools | Application started pid=20976 python=3.13.3 frozen=False log=D:\DongBase\DataHub\Logs\GitTools\app.log
+2026-08-24 18:55:27.636 | INFO     | GitTools | MainThread | GitTools.cli | Command started command=STARTUP
+2026-08-24 18:55:42.638 | INFO     | GitTools | MainThread | GitTools.cli | Command completed command=STARTUP exit_code=1 duration=15.002s
+2026-08-24 18:55:42.639 | INFO     | GitTools | MainThread | GitTools | Application stopped duration=15.007s
+2026-08-24 19:00:54.838 | INFO     | GitTools | MainThread | GitTools | Application started pid=22588 python=3.13.3 frozen=False log=D:\DongBase\DataHub\Logs\GitTools\app.log
+2026-08-24 19:00:54.841 | INFO     | GitTools | MainThread | GitTools.cli | Command started command=STARTUP
+2026-08-24 19:01:14.656 | INFO     | GitTools | MainThread | GitTools.cli | Command completed command=STARTUP exit_code=1 duration=19.816s
+2026-08-24 19:01:14.657 | INFO     | GitTools | MainThread | GitTools | Application stopped duration=19.819s
+2026-08-24 19:05:48.926 | INFO     | GitTools | MainThread | GitTools | Application started pid=2016 python=3.13.3 frozen=False log=D:\DongBase\DataHub\Logs\GitTools\app.log
+2026-08-24 19:05:48.932 | INFO     | GitTools | MainThread | GitTools.cli | Command started command=STARTUP
+2026-08-24 19:07:06.243 | INFO     | GitTools | MainThread | GitTools.cli | Command completed command=STARTUP exit_code=0 duration=77.311s
+2026-08-24 19:07:06.243 | INFO     | GitTools | MainThread | GitTools | Application stopped duration=77.317s
