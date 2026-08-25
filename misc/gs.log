@@ -1,0 +1,98 @@
+At D:\DongBase\scripts\GitTools\startup_tasks\dongge-surge-github-setup-v1\setup.ps1:95 char:30
++     $surge = Find-Command @('surge.cmd', 'surge')
++                              ~~~~~~~~~~~~~~~~~~~~
+Unexpected token 'surge.cmd', 'surge')
+    if ($surge) { return $surge }
+    Write-Host '姝ｅ湪瀹夎' in expression or statement.
+At D:\DongBase\scripts\GitTools\startup_tasks\dongge-surge-github-setup-v1\setup.ps1:111 char:17
++     Write-Host 'GitHub CLI 灏氭湭鐧诲綍銆傛帴涓嬫潵浼氭墦寮€娴忚鍣ㄥ畬鎴?GitHub 鎺堟潈銆? -For ...
++                 ~~~~~~
+Unexpected token 'GitHub' in expression or statement.
+At D:\DongBase\scripts\GitTools\startup_tasks\dongge-surge-github-setup-v1\setup.ps1:115 char:39
++     if ($LASTEXITCODE -ne 0) { throw 'GitHub CLI 鐧诲綍鐘舵€佷粛鏃犳晥銆? }
++                                       ~~~~~~
+Unexpected token 'GitHub' in expression or statement.
+At D:\DongBase\scripts\GitTools\startup_tasks\dongge-surge-github-setup-v1\setup.ps1:133 char:21
++         Write-Host '璇诲彇 GitHub Secrets 澶辫触銆傚皾璇曞埛鏂?GitHub CLI 鏉冮檺銆? -F ...
++                     ~~~
+Unexpected token '璇诲彇' in expression or statement.
+At D:\DongBase\scripts\GitTools\startup_tasks\dongge-surge-github-setup-v1\setup.ps1:137 char:43
++ ...    if ($LASTEXITCODE -ne 0) { throw '浠嶆棤娉曡鍙栦粨搴?Secrets銆傝鏌ョ湅 guide.h ...
++                                          ~~~~~~~~~~~~~~~~~~~~~~~~
+Unexpected token '浠嶆棤娉曡鍙栦粨搴?Secrets銆傝鏌ョ湅' in expression or statement.
+At D:\DongBase\scripts\GitTools\startup_tasks\dongge-surge-github-setup-v1\setup.ps1:140 char:1
++ }
++ ~
+Unexpected token '}' in expression or statement.
+At D:\DongBase\scripts\GitTools\startup_tasks\dongge-surge-github-setup-v1\setup.ps1:267 char:48
++     Write-Host "閰嶇疆涓: $($_.Exception.Message)" -ForegroundColor Red
++                                                ~~~~~~~~~~~~~~~~~~~~~~
+The string is missing the terminator: ".
+At D:\DongBase\scripts\GitTools\startup_tasks\dongge-surge-github-setup-v1\setup.ps1:142 char:47
++ function New-ScopedSurgeToken([string]$Surge) {
++                                               ~
+Missing closing '}' in statement block or type definition.
+    + CategoryInfo          : ParserError: (:) [], ParentContainsErrorRecordException
+    + FullyQualifiedErrorId : UnexpectedToken
+
+
+配置没有完整完成。请根据上方提示和 guide.html 排查后重新运行。
+
+At D:\DongBase\scripts\GitTools\startup_tasks\dongge-cloudflare-web-analytics-setup-v1\setup.ps1:33 char:1
++ }
++ ~
+Unexpected token '}' in expression or statement.
+At D:\DongBase\scripts\GitTools\startup_tasks\dongge-cloudflare-web-analytics-setup-v1\setup.ps1:37 char:12
++ Write-Host '鐜板湪鎶婂畬鏁?snippet 鍙戠粰 ChatGPT 鍗冲彲缁х画銆? -ForegroundColor Gre ...
++            ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+The string is missing the terminator: '.
+    + CategoryInfo          : ParserError: (:) [], ParentContainsErrorRecordException
+    + FullyQualifiedErrorId : UnexpectedToken
+
+[INFO] Installing Buzz local transcription app...
+已找到 Buzz [ChidiWilliams.Buzz] 版本 1.4.4
+此应用程序由其所有者授权给你。
+Microsoft 对第三方程序包概不负责，也不向第三方程序包授予任何许可证。
+正在下载 https://sourceforge.net/projects/buzz-captions/files/Buzz-1.4.4-Windows-X64.zip/download
+  ▍                               36.0 MB / 2.50 GB
+已取消
+[程序异常]
+Traceback (most recent call last):
+  File "D:\DongBase\scripts\infra\shortcuts\..\..\GitTools\GitTools.py", line 25, in <module>
+    raise SystemExit(main(sys.argv[1:]))
+                     ~~~~^^^^^^^^^^^^^^
+  File "D:\DongBase\scripts\infra\shortcuts\..\..\GitTools\GitTools.py", line 21, in main
+    return int(app_main(argv) or 0)
+               ~~~~~~~~^^^^^^
+  File "D:\DongBase\scripts\GitTools\app\cli.py", line 185, in main
+    exit_code = int(ns.handler(ns) or 0)
+                    ~~~~~~~~~~^^^^
+  File "D:\DongBase\scripts\GitTools\app\cli.py", line 116, in _run_startup
+    exit_code = int(startup.main() or 0)
+                    ~~~~~~~~~~~~^^
+  File "D:\DongBase\scripts\GitTools\app\startup.py", line 353, in main
+    run_sync()
+    ~~~~~~~~^^
+  File "D:\DongBase\scripts\GitTools\app\startup.py", line 338, in run_sync
+    task_failures = run_post_sync_tasks(repos, git_cmd)
+  File "D:\DongBase\scripts\GitTools\app\startup.py", line 321, in run_post_sync_tasks
+    return module.run_startup_tasks(repos, git_cmd)
+           ~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^
+  File "D:\DongBase\scripts\GitTools\app\startup_tasks.py", line 275, in run_startup_tasks
+    returncode = execute_startup_task(repo, task)
+  File "D:\DongBase\scripts\GitTools\app\startup_tasks.py", line 142, in execute_startup_task
+    proc = subprocess.run(command, cwd=repo.root, env=environment, check=False)
+  File "C:\Users\G1704069\AppData\Local\Programs\Python\Python313\Lib\subprocess.py", line 556, in run
+    stdout, stderr = process.communicate(input, timeout=timeout)
+                     ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\G1704069\AppData\Local\Programs\Python\Python313\Lib\subprocess.py", line 1214, in communicate
+    self.wait()
+    ~~~~~~~~~^^
+  File "C:\Users\G1704069\AppData\Local\Programs\Python\Python313\Lib\subprocess.py", line 1277, in wait
+    return self._wait(timeout=timeout)
+           ~~~~~~~~~~^^^^^^^^^^^^^^^^^
+  File "C:\Users\G1704069\AppData\Local\Programs\Python\Python313\Lib\subprocess.py", line 1603, in _wait
+    result = _winapi.WaitForSingleObject(self._handle,
+                                         timeout_millis)
+KeyboardInterrupt
+^CTerminate batch job (Y/N)?
