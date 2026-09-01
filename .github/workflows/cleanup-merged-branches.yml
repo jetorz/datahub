@@ -1,0 +1,45 @@
+name: Cleanup merged branches
+
+on:
+  schedule:
+    - cron: '30 11 * * *' # 19:30 Asia/Shanghai
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  cleanup:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - name: Delete branches fully contained in main
+        shell: bash
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          set -euo pipefail
+
+          default_branch="$(gh api "repos/$GITHUB_REPOSITORY" --jq '.default_branch')"
+          default_ref="$(jq -rn --arg value "$default_branch" '$value|@uri')"
+
+          gh api --paginate "repos/$GITHUB_REPOSITORY/branches?per_page=100" \
+            --jq '.[] | [.name, (.protected | tostring)] | @tsv' |
+          while IFS=$'\t' read -r branch protected; do
+            if [[ -z "$branch" || "$branch" == "$default_branch" || "$protected" == "true" ]]; then
+              continue
+            fi
+
+            branch_ref="$(jq -rn --arg value "$branch" '$value|@uri')"
+            status="$(gh api "repos/$GITHUB_REPOSITORY/compare/${branch_ref}...${default_ref}" --jq '.status')"
+
+            case "$status" in
+              ahead|identical)
+                echo "Deleting fully merged branch: $branch"
+                gh api -X DELETE "repos/$GITHUB_REPOSITORY/git/refs/heads/${branch_ref}"
+                ;;
+              *)
+                echo "Keeping branch: $branch (compare status: $status)"
+                ;;
+            esac
+          done
